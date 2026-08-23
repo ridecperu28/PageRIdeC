@@ -41,11 +41,11 @@ export default function Header() {
           <Image
             src="/images/logo.png"
             alt="RIdeC"
-            width={36}
-            height={36}
+            width={100}
+            height={100}
             className="nav__logo"
           />
-          <span>RIdeC</span>
+          {/* <span>RIdeC</span> */}
         </Link>
 
         <ul className={`nav__links${menuOpen ? " nav__links--open" : ""}`}>
