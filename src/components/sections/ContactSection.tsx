@@ -5,12 +5,12 @@ import FormularioContacto from "../formulario";
 import Image from "next/image";
 
 const socials = [
-  { icon: "/images/redes-sociales/icons8-instagram-50.svg", label: "Instagram", href: "#" },
-  { icon: "/images/redes-sociales/icons8-facebook-50.svg", label: "Facebook", href: "#" },
-  { icon: "/images/redes-sociales/icons8-linkedin-50.svg", label: "LinkedIn", href: "#" },
-  { icon: "/images/redes-sociales/icons8-youtube-50.svg", label: "YouTube", href: "#" },
+  { icon: "/images/redes-sociales/icons8-instagram-50.svg", label: "Instagram", href: "https://www.instagram.com/ridecperu/" },
+  { icon: "/images/redes-sociales/icons8-facebook-50.svg", label: "Facebook", href: "https://www.facebook.com/RIDECPERUOFICIAL" },
+  { icon: "/images/redes-sociales/icons8-linkedin-50.svg", label: "LinkedIn", href: "https://www.linkedin.com/company/red-interuniversitaria-de-ciencia-ridec/" },
+  { icon: "/images/redes-sociales/icons8-youtube-50.svg", label: "YouTube", href: "https://www.youtube.com/@ridec-peru5886" },
   { icon: "/images/redes-sociales/icons8-whatsapp-50.svg", label: "WhatsApp", href: "#" },
-  { icon: "/images/redes-sociales/icons8-tiktok-50.svg", label: "TikTok", href: "#" },
+  { icon: "/images/redes-sociales/icons8-tiktok-50.svg", label: "TikTok", href: "https://www.tiktok.com/@ridecperu" },
 ];
 
 export default function ContactSection() {
@@ -43,7 +43,7 @@ export default function ContactSection() {
                 <span className="contact-info__icon">📧</span>
                 <div>
                   <p className="contact-info__label">Email</p>
-                  <p className="contact-info__value">contacto@ridec.org</p>
+                  <p className="contact-info__value">ridecperu@gmail.com</p>
                 </div>
               </div>
 
@@ -51,7 +51,7 @@ export default function ContactSection() {
                 <span className="contact-info__icon">📱</span>
                 <div>
                   <p className="contact-info__label">Teléfono</p>
-                  <p className="contact-info__value">+51 999 888 777</p>
+                  <p className="contact-info__value">+51 --- --- ---</p>
                 </div>
               </div>
 

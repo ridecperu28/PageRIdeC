@@ -28,7 +28,7 @@ export default function HeroSection() {
             <span className="hero__accent">construyendo futuro</span>
           </h1>
           <p className="hero__subtitle">
-            Red iberoamericana de estudiantes y profesionales que impulsa las
+            Red Interuniversitaria de estudiantes y profesionales que impulsa las
             ciencias básicas, reduce la deserción y genera comunidad.
           </p>
           <div className="hero__actions">

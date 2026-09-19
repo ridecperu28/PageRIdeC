@@ -14,7 +14,7 @@ export default function JoinSection() {
       >
         <CTASection
           title="Únete a la red"
-          text="Forma parte de una comunidad que está transformando la educación científica en Iberoamérica."
+          text="Forma parte de una comunidad que está transformando la educación científica en Perú."
           primaryBtn={{ label: "Ver oportunidades", href: "/oportunidades" }}
           secondaryBtn={{ label: "Conoce más", href: "/nosotros" }}
         />

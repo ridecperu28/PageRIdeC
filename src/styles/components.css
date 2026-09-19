@@ -1965,3 +1965,100 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Quiénes somos: fotografía de fondo y texto a la derecha */
+.quienes-somos {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 620px;
+  padding: 64px 5%;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #edf6ff;
+  scroll-margin-top: 120px;
+}
+
+.quienes-somos::before {
+  content: "";
+  position:absolute;
+  inset: 0;
+  z-index:-1;
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 30%,
+      rgba(237, 246, 255, 0.78) 58%,
+      rgba(237, 246, 255, 0.97) 100%
+    ),
+    url("/images/quienes-somos-AI.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quienes-somos__contenido {
+  width: 43%;
+  max-width: 500px;
+}
+
+.quienes-somos__etiqueta {
+  display: block;
+  margin-bottom:16px;
+  color: #265a78;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.quienes-somos__contenido h1 {
+  margin: 0 0 24 px;
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 800;
+  line-height: 1.12;
+  color: #102d46
+}
+
+.quienes-somos__contenido p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #304b60;
+}
+
+.quienes-somos__contenido p + p {
+  margin-top: 20px;
+}
+
+/* En pantallas pequeñas: fotografía arriba y texto debajo */
+@media (max-width: 900px) {
+  .quienes-somos {
+    display: block;
+    min-height: auto;
+    padding: 0;
+  }
+
+  .quienes-somos::before {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-image: url("/images/quienes-somos-AI.png");
+    background-position: center;
+  }
+
+  .quienes-somos__contenido {
+    width: 100%;
+    max-width: none;
+    padding: 32px 24px;
+    box-sizing: border-box;
+  }
+
+  .quienes-somos__contenido p {
+    font-size: 16px;
+  }
+}
