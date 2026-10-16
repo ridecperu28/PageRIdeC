@@ -9,25 +9,25 @@ const socials = [
   { icon: "/images/redes-sociales/icons8-facebook-50.svg", label: "Facebook", href: "https://www.facebook.com/RIDECPERUOFICIAL" },
   { icon: "/images/redes-sociales/icons8-linkedin-50.svg", label: "LinkedIn", href: "https://www.linkedin.com/company/red-interuniversitaria-de-ciencia-ridec/" },
   { icon: "/images/redes-sociales/icons8-youtube-50.svg", label: "YouTube", href: "https://www.youtube.com/@ridec-peru5886" },
-  { icon: "/images/redes-sociales/icons8-whatsapp-50.svg", label: "WhatsApp", href: "#" },
+  // { icon: "/images/redes-sociales/icons8-whatsapp-50.svg", label: "WhatsApp", href: "#" },
   { icon: "/images/redes-sociales/icons8-tiktok-50.svg", label: "TikTok", href: "https://www.tiktok.com/@ridecperu" },
 ];
 
 export default function ContactSection() {
   return (
-    <section className="contact-section">
-      <div className="contact-section__inner">
+    <section className="relative z-10 bg-gradient-to-br from-[#0d2c4f] to-[#060b18] text-white">
+      <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-16">
         <motion.div
-          className="contact-grid"
+          className="grid grid-cols-1 gap-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           {/* Columna izquierda: formulario */}
-          <div className="contact-form-col">
-            <h2 className="contact-form-col__title">Ponte en contacto</h2>
-            <p className="contact-form-col__subtitle">
+          <div>
+            <h2 className="mb-2 font-[family-name:var(--font-heading)] text-[1.25rem] font-bold md:text-[1.75rem]">Ponte en contacto</h2>
+            <p className="mb-8 text-base leading-[1.6] text-slate-400">
               ¿Tienes preguntas, sugerencias o quieres ser parte de la red?
               Escríbenos y te responderemos pronto.
             </p>
@@ -35,36 +35,36 @@ export default function ContactSection() {
           </div>
 
           {/* Columna derecha: info */}
-          <div className="contact-info-col">
-            <h3 className="contact-info-col__heading">Información de contacto</h3>
+          {/* <div className="contact-info-col">
+            <h3 className="contact-info-col__heading">Información de contacto</h3> */}
 
-            <div className="contact-info__items">
-              <div className="contact-info__item">
+            {/* <div className="contact-info__items"> */}
+              {/* <div className="contact-info__item">
                 <span className="contact-info__icon">📧</span>
                 <div>
                   <p className="contact-info__label">Email</p>
                   <p className="contact-info__value">ridecperu@gmail.com</p>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="contact-info__item">
+              {/* <div className="contact-info__item">
                 <span className="contact-info__icon">📱</span>
                 <div>
                   <p className="contact-info__label">Teléfono</p>
                   <p className="contact-info__value">+51 --- --- ---</p>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="contact-info__item">
+              {/* <div className="contact-info__item">
                 <span className="contact-info__icon">📍</span>
                 <div>
                   <p className="contact-info__label">Ubicación</p>
                   <p className="contact-info__value">Lima, Perú</p>
                 </div>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
 
-            <div className="contact-social">
+            {/* <div className="contact-social">
               <p className="contact-social__title">Síguenos</p>
               <div className="contact-social__grid">
                 {socials.map((s) => (
@@ -80,8 +80,8 @@ export default function ContactSection() {
                   </a>
                 ))}
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </motion.div>
       </div>
     </section>

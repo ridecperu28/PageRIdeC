@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { ods } from "../page";
 
 export default async function Nosotros() {
-  const [teamMembers, ods] = await Promise.all([
+  const [teamMembers] = await Promise.all([
     prisma.teamMember.findMany({ orderBy: { order: "asc" } }),
-    prisma.ods.findMany({ orderBy: { order: "asc" } }),
   ]);
 
   return (
@@ -43,8 +43,8 @@ export default async function Nosotros() {
           Alineamos nuestras acciones con los Objetivos de Desarrollo Sostenible (ODS):</p>
 
         <div className="grid-4">
-          {ods.map((o) => (
-            <div className="event-card" key={o.id}>
+          {ods.map((o, id) => (
+            <div className="event-card" key={id}>
               <Image className="event-card__img" src={o.image} alt={`ODS ${o.number}`} width={400} height={200} />
               <div className="event-card__body">
                 <h2 className="event-card__title">ODS {o.number} · {o.title}</h2>

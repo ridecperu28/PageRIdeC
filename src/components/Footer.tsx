@@ -20,33 +20,36 @@ const socials = [
   { icon: "/images/redes-sociales/icons8-facebook-50.svg", label: "Facebook", href: "https://www.facebook.com/RIDECPERUOFICIAL" },
   { icon: "/images/redes-sociales/icons8-linkedin-50.svg", label: "LinkedIn", href: "https://www.linkedin.com/company/red-interuniversitaria-de-ciencia-ridec/" },
   { icon: "/images/redes-sociales/icons8-youtube-50.svg", label: "YouTube", href: "https://www.youtube.com/@ridec-peru5886" },
-  { icon: "/images/redes-sociales/icons8-whatsapp-50.svg", label: "WhatsApp", href: "#" },
+  // { icon: "/images/redes-sociales/icons8-whatsapp-50.svg", label: "WhatsApp", href: "#" },
   { icon: "/images/redes-sociales/icons8-tiktok-50.svg", label: "TikTok", href: "https://www.tiktok.com/@ridecperu" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__inner">
-        <div className="footer__grid">
+    <footer className="relative z-10 bg-[#0d2c4f] text-white">
+      <div className="mx-auto max-w-[1200px] px-4 pt-12 md:px-8 md:pt-16">
+        <div className="grid grid-cols-2 gap-8 border-b border-white/10 pb-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-12">
           {/* Brand */}
-          <div className="footer__brand">
-            <Link href="/" className="footer__logo">
+          <div className="col-span-full flex flex-col gap-4 md:col-span-1">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 font-[family-name:var(--font-heading)] text-xl font-bold text-white no-underline"
+            >
               <Image src="/images/logo.png" alt="RIdeC" width={40} height={40} />
               <span>RIdeC</span>
             </Link>
-            <p className="footer__brand-text">
+            <p className="max-w-[280px] text-sm leading-[1.6] text-slate-400">
               Red iberoamericana de estudiantes y profesionales que impulsa las
               ciencias básicas, reduce la deserción y genera comunidad.
             </p>
-            <div className="footer__socials">
+            <div className="mt-2 flex gap-2">
               {socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer__social-link"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.08] transition duration-200 hover:-translate-y-0.5 hover:bg-cyan-400/20"
                   aria-label={s.label}
                 >
                   <Image src={s.icon} alt={s.label} width={20} height={20} />
@@ -56,19 +59,26 @@ export default function Footer() {
           </div>
 
           {/* Navegación */}
-          <div className="footer__col">
-            <h4 className="footer__heading">Navegación</h4>
-            <ul className="footer__links">
+          <div className="flex flex-col gap-4">
+            <h4 className="mb-2 font-[family-name:var(--font-heading)] text-sm font-bold tracking-[0.05em] text-white uppercase">
+              Navegación
+            </h4>
+            <ul className="m-0 flex list-none flex-col gap-[0.6rem] p-0">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="footer__link">{l.label}</Link>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-slate-400 no-underline transition-colors duration-200 hover:text-cyan-400"
+                  >
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Recursos */}
-          <div className="footer__col">
+          {/* <div className="footer__col">
             <h4 className="footer__heading">Recursos</h4>
             <ul className="footer__links">
               {resourceLinks.map((l) => (
@@ -77,33 +87,45 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contacto */}
-          <div className="footer__col">
-            <h4 className="footer__heading">Contacto</h4>
-            <ul className="footer__links footer__links--info">
-              <li className="footer__info-item">
-                <span>📧</span> ridecperu@gmail.com
+          <div className="flex flex-col gap-4">
+            <h4 className="mb-2 font-[family-name:var(--font-heading)] text-sm font-bold tracking-[0.05em] text-white uppercase">
+              Contacto
+            </h4>
+            <ul className="m-0 flex list-none flex-col gap-4 p-0">
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-base">📧</span> ridecperu@gmail.com
               </li>
-              <li className="footer__info-item">
-                <span>📍</span> Lima, Perú
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-base">📍</span> Lima, Perú
               </li>
-              <li className="footer__info-item">
-                <span>📱</span> +51 -- --- ----
-              </li>
+              {/* <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-base">📱</span> +51 -- --- ----
+              </li> */}
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="footer__bottom">
-          <p className="footer__copyright">
+        <div className="flex flex-col items-center justify-between gap-4 py-6 text-center md:flex-row md:text-left">
+          <p className="text-xs text-slate-500">
             © {new Date().getFullYear()} RIdeC — Red Iberoamericana de Ciencias. Todos los derechos reservados.
           </p>
-          <div className="footer__legal">
-            <Link href="#" className="footer__legal-link">Política de privacidad</Link>
-            <Link href="#" className="footer__legal-link">Términos de uso</Link>
+          <div className="flex gap-4">
+            <Link
+              href="#"
+              className="text-xs text-slate-500 no-underline transition-colors duration-200 hover:text-cyan-400"
+            >
+              Política de privacidad
+            </Link>
+            <Link
+              href="#"
+              className="text-xs text-slate-500 no-underline transition-colors duration-200 hover:text-cyan-400"
+            >
+              Términos de uso
+            </Link>
           </div>
         </div>
       </div>

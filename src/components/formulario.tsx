@@ -10,6 +10,18 @@ type FormData = {
 
 type Errores = Partial<Record<keyof FormData, string>>;
 
+const groupClass = "flex flex-col gap-[0.35rem]";
+const labelClass = "text-sm font-medium text-[#e2e8f0]";
+const fieldBase =
+  "w-full rounded-xl border border-white/15 bg-white/[0.08] text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.15)]";
+const inputClass = `${fieldBase} px-[0.9rem] py-[0.6rem] text-base`;
+const textareaClass = `${fieldBase} resize-none px-4 py-3 text-sm`;
+const errorClass = "mt-1 text-xs text-[#ff6b6b]";
+const successClass =
+  "rounded-xl border border-cyan-400/30 bg-cyan-400/15 px-6 py-4 text-sm font-medium text-cyan-400";
+const submitClass =
+  "mt-2 inline-flex items-center justify-center gap-2 self-start rounded-2xl bg-cyan-400 px-6 py-3 font-[family-name:var(--font-body)] text-base leading-none font-semibold text-[#060b18] no-underline transition hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60";
+
 export default function FormularioContacto() {
   const [form, setForm] = useState<FormData>({
     nombre: "",
@@ -75,63 +87,59 @@ export default function FormularioContacto() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       {exito && (
-        <div className="contact-form__success">
+        <div className={successClass}>
           Mensaje enviado correctamente. Gracias por contactarnos.
         </div>
       )}
 
-      <div className="form-group">
-        <label className="form-label form-label--light" htmlFor="contact-nombre">Nombre</label>
+      <div className={groupClass}>
+        <label className={labelClass} htmlFor="contact-nombre">Nombre</label>
         <input
           id="contact-nombre"
-          className="form-input form-input--dark"
+          className={inputClass}
           type="text"
           placeholder="Tu nombre"
           value={form.nombre}
           onChange={(e) => setForm({ ...form, nombre: e.target.value })}
         />
         {errores.nombre && (
-          <p className="contact-form__error">{errores.nombre}</p>
+          <p className={errorClass}>{errores.nombre}</p>
         )}
       </div>
 
-      <div className="form-group">
-        <label className="form-label form-label--light" htmlFor="contact-email">Correo electrónico</label>
+      <div className={groupClass}>
+        <label className={labelClass} htmlFor="contact-email">Correo electrónico</label>
         <input
           id="contact-email"
-          className="form-input form-input--dark"
+          className={inputClass}
           type="email"
           placeholder="tu@email.com"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
         {errores.email && (
-          <p className="contact-form__error">{errores.email}</p>
+          <p className={errorClass}>{errores.email}</p>
         )}
       </div>
 
-      <div className="form-group">
-        <label className="form-label form-label--light" htmlFor="contact-mensaje">Mensaje</label>
+      <div className={groupClass}>
+        <label className={labelClass} htmlFor="contact-mensaje">Mensaje</label>
         <textarea
           id="contact-mensaje"
-          className="form-textarea form-input--dark"
+          className={textareaClass}
           rows={4}
           placeholder="¿En qué podemos ayudarte?"
           value={form.mensaje}
           onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
         />
         {errores.mensaje && (
-          <p className="contact-form__error">{errores.mensaje}</p>
+          <p className={errorClass}>{errores.mensaje}</p>
         )}
       </div>
 
-      <button
-        className="btn btn--primary contact-form__submit"
-        type="submit"
-        disabled={loading}
-      >
+      <button className={submitClass} type="submit" disabled={loading}>
         {loading ? "Enviando..." : "Enviar mensaje →"}
       </button>
     </form>

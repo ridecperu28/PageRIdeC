@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function validateContacto(body) {
@@ -57,6 +61,18 @@ export async function POST(request) {
         email: data.email,
         mensaje: data.mensaje,
       },
+    });
+
+    await resend.emails.send({
+      from: process.env.EMAIL_FROM,
+      to: process.env.CONTACT_EMAIL,
+      replyTo: data.email,
+      subject: `Nuevo mensaje de contacto: ${data.nombre}`,
+      text: `Nombre: ${data.nombre}
+    Correo: ${data.email}
+
+    Mensaje:
+    ${data.mensaje}`,
     });
 
     return NextResponse.json(nuevoContacto, { status: 201 });
