@@ -90,26 +90,6 @@ model Stat {
   order  Int    @default(0)
 }
 
-// ── Features / Qué hacemos ──
-model Feature {
-  id          Int    @id @default(autoincrement())
-  icon        String // emoji
-  title       String
-  description String
-  href        String?
-  order       Int    @default(0)
-}
-
-// ── ODS ──
-model Ods {
-  id          Int    @id @default(autoincrement())
-  number      Int    // 4, 5, 9, 10
-  title       String
-  description String
-  image       String
-  order       Int    @default(0)
-}
-
 // ── Mesa Directiva / Equipo ──
 model TeamMember {
   id    Int    @id @default(autoincrement())
