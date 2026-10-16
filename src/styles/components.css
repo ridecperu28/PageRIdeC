@@ -368,7 +368,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 85vh;
+  min-height: 100svh;
   padding: 0 var(--sp-lg);
   text-align: center;
 }

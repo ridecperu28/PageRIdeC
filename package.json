@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "db:seed": "npx tsx prisma/seed.ts",
+    "db:export": "npx tsx prisma/export-data.ts",
+    "db:import": "npx tsx prisma/import-data.ts",
     "db:reset": "npx prisma migrate reset --force && npm run db:seed"
   },
   "prisma": {
@@ -15,7 +17,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",
-    "@prisma/client": "^6.19.3",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
@@ -23,7 +26,7 @@
     "lucide-react": "^1.31.0",
     "motion": "^12.42.2",
     "next": "^16.2.6",
-    "prisma": "^6.19.3",
+    "prisma": "^7.10.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.85.0",
@@ -37,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^16.6.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",

@@ -1,0 +1,333 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Administrador",
+      "email": "admin@ridec.com",
+      "password": "$2b$10$ZINX6VSDbILorXdrQ86U4.sAN0tNcqMhhQFz0nN1.IGfPuGs17GpG",
+      "role": "ADMIN",
+      "createdAt": "2026-10-16T17:40:45.233Z",
+      "updatedAt": "2026-10-16T17:40:45.233Z"
+    },
+    {
+      "id": 2,
+      "name": "Usuario",
+      "email": "user@ridec.com",
+      "password": "$2b$10$V5Ai67xJdBcU909j7MJNGe4KSRASIFBiGiNjBq1vc0ikDbPh1EI2y",
+      "role": "USER",
+      "createdAt": "2026-10-16T17:40:45.448Z",
+      "updatedAt": "2026-10-16T17:40:45.448Z"
+    },
+    {
+      "id": 3,
+      "name": "demo",
+      "email": "demo@ridec.pe",
+      "password": "$2b$10$BLDXMUrZVsTdxVN5DQ4WIuCpMxY7Oe4DJgpKsqOUnv1zIgVfPAX0O",
+      "role": "USER",
+      "createdAt": "2026-10-16T17:43:08.976Z",
+      "updatedAt": "2026-10-16T17:43:08.976Z"
+    }
+  ],
+  "contacto": [],
+  "evento": [
+    {
+      "id": 1,
+      "title": "Taller: Física Cuántica para Principiantes",
+      "description": "Una inmersión práctica a los fundamentos de la mecánica cuántica con experimentos de laboratorio virtual.",
+      "date": "2025-08-15T00:00:00.000Z",
+      "category": "ec",
+      "tagLabel": "Explorando Ciencias",
+      "image": "/images/bioinformatica.jpg",
+      "location": "Online",
+      "featured": true,
+      "createdAt": "2026-10-16T17:40:44.839Z",
+      "updatedAt": "2026-10-16T17:40:44.839Z"
+    },
+    {
+      "id": 2,
+      "title": "Meetup: Red de Física Internacional",
+      "description": "Conecta con estudiantes e investigadores de distintas universidades. Networking + charlas relámpago.",
+      "date": "2025-08-22T00:00:00.000Z",
+      "category": "gl",
+      "tagLabel": "Generando Lazos",
+      "image": "/images/networking.png",
+      "location": "Lima, Perú",
+      "featured": true,
+      "createdAt": "2026-10-16T17:40:44.839Z",
+      "updatedAt": "2026-10-16T17:40:44.839Z"
+    },
+    {
+      "id": 3,
+      "title": "Congreso de Ciencias Básicas 2025",
+      "description": "Jornada académica con ponentes nacionales e internacionales sobre investigación en Perú.",
+      "date": "2025-09-05T00:00:00.000Z",
+      "category": "ec",
+      "tagLabel": "Explorando Ciencias",
+      "image": "/images/bioinformatica.jpg",
+      "location": "UNMSM, Lima",
+      "featured": true,
+      "createdAt": "2026-10-16T17:40:44.839Z",
+      "updatedAt": "2026-10-16T17:40:44.839Z"
+    },
+    {
+      "id": 4,
+      "title": "Encuentro Regional: Suramérica",
+      "description": "Actividad de integración con capítulos de Buenos Aires, Santiago y São Paulo.",
+      "date": "2025-09-20T00:00:00.000Z",
+      "category": "gl",
+      "tagLabel": "Generando Lazos",
+      "image": "/images/networking.png",
+      "location": "Buenos Aires, Argentina",
+      "featured": true,
+      "createdAt": "2026-10-16T17:40:44.839Z",
+      "updatedAt": "2026-10-16T17:40:44.839Z"
+    },
+    {
+      "id": 5,
+      "title": "Seminario: Astrofísica y Cosmología",
+      "description": "Charlas sobre los últimos descubrimientos en astrofísica observacional y modelos cosmológicos.",
+      "date": "2025-10-10T00:00:00.000Z",
+      "category": "ec",
+      "tagLabel": "Explorando Ciencias",
+      "image": "/images/bioinformatica.jpg",
+      "location": "Online",
+      "featured": false,
+      "createdAt": "2026-10-16T17:40:44.839Z",
+      "updatedAt": "2026-10-16T17:40:44.839Z"
+    },
+    {
+      "id": 6,
+      "title": "Taller: Redacción Científica",
+      "description": "Aprende a estructurar artículos científicos, escribir abstracts efectivos y navegar el proceso de publicación.",
+      "date": "2025-10-25T00:00:00.000Z",
+      "category": "ec",
+      "tagLabel": "Explorando Ciencias",
+      "image": "/images/bioinformatica.jpg",
+      "location": "PUCP, Lima",
+      "featured": false,
+      "createdAt": "2026-10-16T17:40:44.839Z",
+      "updatedAt": "2026-10-16T17:40:44.839Z"
+    }
+  ],
+  "oportunidad": [
+    {
+      "id": 1,
+      "title": "Beca de Investigación en Física Teórica",
+      "description": "Programa de 6 meses para estudiantes de pregrado con interés en investigación teórica. Incluye mentoría personalizada y financiamiento de materiales.",
+      "deadline": "2025-11-30T00:00:00.000Z",
+      "type": "becas",
+      "externalLink": "https://ejemplo.com/beca-fisica-teorica",
+      "image": null,
+      "year": 2025,
+      "createdAt": "2026-10-16T17:40:44.971Z",
+      "updatedAt": "2026-10-16T17:40:44.971Z"
+    },
+    {
+      "id": 2,
+      "title": "Congreso Internacional de Ciencias Básicas",
+      "description": "4to Congreso Internacional con foco en ciencias básicas iberoamericanas. Abstracts abiertos hasta septiembre.",
+      "deadline": "2025-09-15T00:00:00.000Z",
+      "type": "congresos",
+      "externalLink": "https://ejemplo.com/congreso-ciencias",
+      "image": null,
+      "year": 2025,
+      "createdAt": "2026-10-16T17:40:44.971Z",
+      "updatedAt": "2026-10-16T17:40:44.971Z"
+    },
+    {
+      "id": 3,
+      "title": "Traslado Académico: Universidad de Barcelona",
+      "description": "Convocatoria para estudiantes de ciencias que deseen realizar un semestre de intercambio en la UB.",
+      "deadline": "2025-12-01T00:00:00.000Z",
+      "type": "traslados",
+      "externalLink": null,
+      "image": null,
+      "year": 2025,
+      "createdAt": "2026-10-16T17:40:44.971Z",
+      "updatedAt": "2026-10-16T17:40:44.971Z"
+    },
+    {
+      "id": 4,
+      "title": "Financiamiento para Proyectos de Innovación",
+      "description": "Convocatoria abierta para proyectos de investigación aplicada con impacto social. Hasta S/ 10,000 por proyecto.",
+      "deadline": "2025-10-15T00:00:00.000Z",
+      "type": "financiamientos",
+      "externalLink": "https://ejemplo.com/financiamiento-innovacion",
+      "image": null,
+      "year": 2025,
+      "createdAt": "2026-10-16T17:40:44.971Z",
+      "updatedAt": "2026-10-16T17:40:44.971Z"
+    },
+    {
+      "id": 5,
+      "title": "Beca Perú – Brasil en Ciencias Naturales",
+      "description": "Programa bilateral de movilidad estudiantil entre universidades peruanas y brasileñas en áreas STEM.",
+      "deadline": "2026-03-01T00:00:00.000Z",
+      "type": "becas",
+      "externalLink": null,
+      "image": null,
+      "year": 2026,
+      "createdAt": "2026-10-16T17:40:44.971Z",
+      "updatedAt": "2026-10-16T17:40:44.971Z"
+    },
+    {
+      "id": 6,
+      "title": "Congreso Iberoamericano de Estudiantes de Física",
+      "description": "Encuentro regional de estudiantes de física con charlas, talleres y oportunidades de networking internacional.",
+      "deadline": "2026-04-30T00:00:00.000Z",
+      "type": "congresos",
+      "externalLink": null,
+      "image": null,
+      "year": 2026,
+      "createdAt": "2026-10-16T17:40:44.971Z",
+      "updatedAt": "2026-10-16T17:40:44.971Z"
+    }
+  ],
+  "blogPost": [
+    {
+      "id": 1,
+      "title": "El estado de la deserción en ciencias básicas en Perú",
+      "slug": "desercion-ciencias-basicas-peru",
+      "content": "## El problema\n\nEn 2019, realizamos un estudio sobre cohortes de Física en tres universidades peruanas y los resultados fueron alarmantes:\n\n- **Universidad A**: 82.7% de deserción\n- **Universidad B**: 36.4% de deserción  \n- **Universidad C**: 86.7% de deserción\n\nEstas cifras no son un problema local. A nivel iberoamericano, las carreras de ciencias básicas enfrentan retos similares.\n\n## Causas identificadas\n\nLas causas son multidimensionales:\n\n1. **Falta de comunidades de práctica** que acompañen al estudiante\n2. **Ausencia de mentorías** tempranas en investigación\n3. **Desconexión** entre el aula y la investigación real\n4. **Invisibilidad** de las oportunidades académicas disponibles\n\n## Nuestra propuesta\n\nEn RIdeC creemos que la respuesta está en construir puentes: entre estudiantes, entre universidades, y entre la academia y la sociedad. Por eso trabajamos en comunidades, mentorías y proyectos que generan impacto real.",
+      "author": "Jorge Medina",
+      "image": "/images/bioinformatica.jpg",
+      "tags": "investigación,Perú,deserción,ciencias",
+      "published": true,
+      "createdAt": "2026-10-16T17:40:45.086Z",
+      "updatedAt": "2026-10-16T17:40:45.086Z"
+    },
+    {
+      "id": 2,
+      "title": "Física cuántica: por qué debería importarte",
+      "slug": "fisica-cuantica-para-todos",
+      "content": "## Más cerca de lo que crees\n\nLa mecánica cuántica no es solo teoría abstracta. Está en tu teléfono, en los semáforos GPS, en los láseres y en los transistores que hacen posible la computación moderna.\n\n## Conceptos clave\n\n- **Superposición**: Un sistema puede estar en múltiples estados simultáneamente\n- **Entrelazamiento**: Partículas pueden estar conectadas instantáneamente\n- **Incertidumbre**: No podemos conocer todo sobre un sistema con precisión perfecta\n\n## ¿Por qué estudiarla?\n\nLos campos que se benefician del conocimiento cuántico crecen cada año:\n\n- Computación cuántica\n- Criptografía\n- Medicina cuántica\n- Simulación molecular\n\n> \"Si crees que entiendes la mecánica cuántica, no la entiendes\" — Richard Feynman",
+      "author": "Carla Pérez",
+      "image": "/images/bioinformatica.jpg",
+      "tags": "física cuántica,educación,ciencia",
+      "published": true,
+      "createdAt": "2026-10-16T17:40:45.086Z",
+      "updatedAt": "2026-10-16T17:40:45.086Z"
+    },
+    {
+      "id": 3,
+      "title": "3 razones para unirte a una comunidad científica",
+      "slug": "razones-unirse-comunidad-cientifica",
+      "content": "## No studiar solo\n\nLa ciencia es un esfuerzo colectivo. Estudiar en aislamiento reduce la motivación y limita las perspectivas.\n\n## Razón 1: Aprendizaje colaborativo\n\nCuando explicas un concepto a alguien más, lo aprendes mejor. Las comunidades de práctica permiten este intercambio constante.\n\n## Razón 2: Acceso a oportunidades\n\nEn una comunidad, las convocatorias de becas, congresos y traslados circulan rápidamente. No te pierdes nada.\n\n## Razón 3: Networking real\n\nLos contactos que haces hoy son tus colegas de mañana. Una red científica activa abre puertas que el CV solo no abre.\n\n## Únete\n\nEn RIdeC tenemos comunidades activas en 15+ universidades. Encuentra la tuya.",
+      "author": "Camila Suárez Díaz",
+      "image": "/images/networking.png",
+      "tags": "comunidad, networking, estudiantes",
+      "published": true,
+      "createdAt": "2026-10-16T17:40:45.086Z",
+      "updatedAt": "2026-10-16T17:40:45.086Z"
+    }
+  ],
+  "stat": [
+    {
+      "id": 1,
+      "number": "82.7%",
+      "label": "Tasa de deserción en Física",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "number": "4",
+      "label": "Ciencias básicas comprometidas",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "number": "15+",
+      "label": "Universidades conectadas",
+      "order": 3
+    },
+    {
+      "id": 4,
+      "number": "500+",
+      "label": "Miembros en la red",
+      "order": 4
+    }
+  ],
+  "feature": [
+    {
+      "id": 1,
+      "icon": "🔬",
+      "title": "Comunidades",
+      "description": "Grupos de estudio y práctica entre pares que fortalecen el aprendizaje colaborativo.",
+      "href": "/nosotros",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "icon": "🤝",
+      "title": "Mentorías",
+      "description": "Acompañamiento personalizado de investigadores y profesionales hacia los estudiantes.",
+      "href": "/nosotros",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "icon": "💡",
+      "title": "Proyectos",
+      "description": "Iniciativas de investigación temprana con impacto real en las universidades.",
+      "href": "/oportunidades",
+      "order": 3
+    }
+  ],
+  "ods": [
+    {
+      "id": 1,
+      "number": 4,
+      "title": "Educación",
+      "description": "Programas abiertos y mentorías para elevar la educación científica.",
+      "image": "/images/ODS4.png",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "number": 5,
+      "title": "Igualdad de género",
+      "description": "Fomentamos el liderazgo equitativo de mujeres en ciencia.",
+      "image": "/images/ODS5.png",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "number": 9,
+      "title": "Innovación",
+      "description": "Proyectos de I+D que impulsan soluciones sostenibles.",
+      "image": "/images/ODS9.png",
+      "order": 3
+    },
+    {
+      "id": 4,
+      "number": 10,
+      "title": "Igualdad",
+      "description": "Acceso inclusivo a la educación científica para comunidades vulnerables.",
+      "image": "/images/ODS10.png",
+      "order": 4
+    }
+  ],
+  "teamMember": [
+    {
+      "id": 1,
+      "name": "Jorge Medina",
+      "role": "Vicepresidente",
+      "image": "/images/people/Jorge-Medina-photo.jpg",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "name": "Carla Pérez",
+      "role": "Directora de Innovación",
+      "image": "/images/people/carla-photo.png",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "name": "Camila Suárez Díaz",
+      "role": "Miembro",
+      "image": "/images/people/Camila_Suarez_Díaz-photo.jpeg",
+      "order": 3
+    }
+  ]
+}

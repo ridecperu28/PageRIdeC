@@ -34,6 +34,7 @@ export default function LoginForm() {
       const result = await response.json();
 
       if (!response.ok) {
+        console.log(result.message)
         console.error(result.message);
         return;
       }

@@ -1,11 +1,16 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { registerSchema, type RegisterFormData } from "@/schemas/auth.schema";
 
 export default function RegisterForm() {
+  const router = useRouter();
+  const [message, setMessage] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -15,6 +20,8 @@ export default function RegisterForm() {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
+    setMessage(null);
+
     const response = await fetch("/api/auth/register", {
       method: "POST",
 
@@ -27,7 +34,12 @@ export default function RegisterForm() {
 
     const result = await response.json();
 
-    console.log(result);
+    if (!response.ok) {
+      setMessage(result.message || "No se pudo crear la cuenta");
+      return;
+    }
+
+    router.push("/login");
   };
 
   return (
@@ -105,6 +117,24 @@ export default function RegisterForm() {
           </p>
         )}
       </div>
+
+      <div className="form-group">
+        <label className="flex items-start gap-2 text-sm">
+          <input
+            id="terms"
+            {...register("terms")}
+            type="checkbox"
+            className="mt-0.5 h-4 w-4"
+          />
+          <span>Acepto los términos y condiciones</span>
+        </label>
+
+        {errors.terms && (
+          <p className="mt-1 text-sm text-red-500">{errors.terms.message}</p>
+        )}
+      </div>
+
+      {message && <p className="text-sm text-red-500">{message}</p>}
 
       <button
         type="submit"
