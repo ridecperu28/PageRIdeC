@@ -81,20 +81,3 @@ model BlogPost {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
-// ── Stats del homepage ──
-model Stat {
-  id     Int    @id @default(autoincrement())
-  number String // "350+"
-  label  String // "Estudiantes activos"
-  order  Int    @default(0)
-}
-
-// ── Mesa Directiva / Equipo ──
-model TeamMember {
-  id    Int    @id @default(autoincrement())
-  name  String
-  role  String
-  image String
-  order Int    @default(0)
-}

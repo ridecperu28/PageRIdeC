@@ -18,6 +18,13 @@ interface EventosClientProps {
   eventos: Evento[];
 }
 
+const pillClass = (active: boolean) =>
+  `inline-flex cursor-pointer items-center rounded-full border px-4 py-[0.45rem] font-[family-name:var(--font-body)] text-sm font-medium whitespace-nowrap transition ${
+    active
+      ? "border-[#0d2c4f] bg-[#0d2c4f] text-white hover:border-[#005a9c] hover:bg-[#005a9c]"
+      : "border-[#e0e0e0] bg-[#f7f9fc] text-[#6c757d] hover:border-[#0d2c4f] hover:text-[#0d2c4f]"
+  }`;
+
 export default function EventosClient({ eventos }: EventosClientProps) {
   const [yearFilter, setYearFilter] = useState("Todos");
   const [catFilter, setCatFilter] = useState<string | null>(null);
@@ -32,18 +39,12 @@ export default function EventosClient({ eventos }: EventosClientProps) {
   });
 
   return (
-    <div className="section-light__inner py-16 space-y-8">
-      <section>
-        <h1 className="section-header__title mb-4">Eventos</h1>
-        <p className="section-header__subtitle">
-          Encuentros, talleres y congrentos de la comunidad RIdeC.
-        </p>
-      </section>
+    <div className="mx-auto min-h-screen max-w-[1200px] space-y-8 px-4 py-1 md:px-8">
 
-      <div className="filter-bar">
-        <span className="filter-bar__label">Año:</span>
+      <div className="flex flex-wrap items-center gap-2 rounded-2xl bg-white px-4 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)] md:gap-4 md:px-6 md:py-4">
+        <span className="mr-2 font-[family-name:var(--font-heading)] text-sm font-semibold text-[#0d2c4f]">Año:</span>
         <button
-          className={`filter-pill${yearFilter === "Todos" ? " filter-pill--active" : ""}`}
+          className={pillClass(yearFilter === "Todos")}
           onClick={() => setYearFilter("Todos")}
         >
           Todos
@@ -51,24 +52,24 @@ export default function EventosClient({ eventos }: EventosClientProps) {
         {years.map((y) => (
           <button
             key={y}
-            className={`filter-pill${yearFilter === y ? " filter-pill--active" : ""}`}
+            className={pillClass(yearFilter === y)}
             onClick={() => setYearFilter(y)}
           >
             {y}
           </button>
         ))}
 
-        <div className="filter-bar__divider" />
+        <div className="hidden h-6 w-px shrink-0 bg-[#e0e0e0] md:block" />
 
-        <span className="filter-bar__label">Categoría:</span>
+        <span className="mr-2 font-[family-name:var(--font-heading)] text-sm font-semibold text-[#0d2c4f]">Categoría:</span>
         <button
-          className={`filter-pill${catFilter === "ec" ? " filter-pill--active" : ""}`}
+          className={pillClass(catFilter === "ec")}
           onClick={() => setCatFilter(catFilter === "ec" ? null : "ec")}
         >
           🔬 Explorando Ciencias
         </button>
         <button
-          className={`filter-pill${catFilter === "gl" ? " filter-pill--active" : ""}`}
+          className={pillClass(catFilter === "gl")}
           onClick={() => setCatFilter(catFilter === "gl" ? null : "gl")}
         >
           🤝 Generando Lazos
@@ -76,7 +77,7 @@ export default function EventosClient({ eventos }: EventosClientProps) {
       </div>
 
       <section>
-        <div className="grid-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {filtered.map((ev) => (
             <EventCard
               key={ev.id}
@@ -91,8 +92,8 @@ export default function EventosClient({ eventos }: EventosClientProps) {
           ))}
         </div>
         {filtered.length === 0 && (
-          <div style={{ textAlign: "center", padding: "3rem 1rem", color: "var(--c-text-muted)" }}>
-            <p style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🔍</p>
+          <div className="px-4 py-12 text-center text-[#94a3b8]">
+            <p className="mb-2 text-[2rem]">🔍</p>
             <p>No hay eventos que coincidan con los filtros seleccionados.</p>
           </div>
         )}

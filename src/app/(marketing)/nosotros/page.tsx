@@ -1,11 +1,29 @@
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { ods } from "../page";
+export const teamMembers = [
+  {
+    name: "Jorge Medina",
+    role: "Vicepresidente",
+    image: "/images/people/Jorge-Medina-photo.jpg",
+    order: 1,
+  },
+  {
+    name: "Carla Pérez",
+    role: "Directora de Innovación",
+    image: "/images/people/carla-photo.png",
+    order: 2,
+  },
+  {
+    name: "Camila Suárez Díaz",
+    role: "Miembro",
+    image: "/images/people/Camila_Suarez_Díaz-photo.jpeg",
+    order: 3,
+  },
+];
+
 
 export default async function Nosotros() {
-  const [teamMembers] = await Promise.all([
-    prisma.teamMember.findMany({ orderBy: { order: "asc" } }),
-  ]);
 
   return (
     <div className="section-light__inner py-16 space-y-16">
@@ -82,8 +100,8 @@ export default async function Nosotros() {
         <h2 className="section-header__title">Mesa Directiva</h2>
 
         <div className="grid-4 mt-8">
-          {teamMembers.map((m) => (
-            <div className="event-card" key={m.id}>
+          {teamMembers.map((m, id) => (
+            <div className="event-card" key={id}>
               <Image className="event-card__img" src={m.image} alt={m.name} width={400} height={200} />
               <div className="event-card__body">
                 <h2 className="event-card__title">{m.name}</h2>

@@ -73,8 +73,7 @@ export const ods = [
 ];
 
 export default async function Home() {
-  const [stats, eventos] = await Promise.all([
-    prisma.stat.findMany({ orderBy: { order: "asc" } }),
+  const [eventos] = await Promise.all([
     prisma.evento.findMany({
       where: { featured: true },
       orderBy: { date: "desc" },

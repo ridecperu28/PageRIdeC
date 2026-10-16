@@ -35,7 +35,6 @@ export default function LoginForm() {
 
       if (!response.ok) {
         console.log(result.message)
-        console.error(result.message);
         return;
       }
 

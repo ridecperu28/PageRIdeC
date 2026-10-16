@@ -1,0 +1,322 @@
+import "dotenv/config";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient, Role } from "@prisma/client";
+import bcrypt from "bcrypt";
+
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+});
+
+const prisma = new PrismaClient({ adapter });
+
+async function main() {
+  // ── Limpiar datos existentes ──
+  await prisma.blogPost.deleteMany();
+  await prisma.oportunidad.deleteMany();
+  await prisma.evento.deleteMany();
+  await prisma.stat.deleteMany();
+  await prisma.teamMember.deleteMany();
+
+  const adminPassword = await bcrypt.hash("admin123", 10);
+  const userPassword = await bcrypt.hash("user123", 10);
+
+  // ── Stats ──
+  await prisma.stat.createMany({
+    data: [
+      { number: "82.7%", label: "Tasa de deserción en Física", order: 1 },
+      { number: "4", label: "Ciencias básicas comprometidas", order: 2 },
+      { number: "15+", label: "Universidades conectadas", order: 3 },
+      { number: "500+", label: "Miembros en la red", order: 4 },
+    ],
+  });
+
+  // ── Team Members ──
+  await prisma.teamMember.createMany({
+    data: [
+      {
+        name: "Jorge Medina",
+        role: "Vicepresidente",
+        image: "/images/people/Jorge-Medina-photo.jpg",
+        order: 1,
+      },
+      {
+        name: "Carla Pérez",
+        role: "Directora de Innovación",
+        image: "/images/people/carla-photo.png",
+        order: 2,
+      },
+      {
+        name: "Camila Suárez Díaz",
+        role: "Miembro",
+        image: "/images/people/Camila_Suarez_Díaz-photo.jpeg",
+        order: 3,
+      },
+    ],
+  });
+
+  // ── Eventos ──
+  await prisma.evento.createMany({
+    data: [
+      {
+        title: "Taller: Física Cuántica para Principiantes",
+        description:
+          "Una inmersión práctica a los fundamentos de la mecánica cuántica con experimentos de laboratorio virtual.",
+        date: new Date("2025-08-15"),
+        category: "ec",
+        tagLabel: "Explorando Ciencias",
+        image: "/images/bioinformatica.jpg",
+        location: "Online",
+        featured: true,
+      },
+      {
+        title: "Meetup: Red de Física Internacional",
+        description:
+          "Conecta con estudiantes e investigadores de distintas universidades. Networking + charlas relámpago.",
+        date: new Date("2025-08-22"),
+        category: "gl",
+        tagLabel: "Generando Lazos",
+        image: "/images/networking.png",
+        location: "Lima, Perú",
+        featured: true,
+      },
+      {
+        title: "Congreso de Ciencias Básicas 2025",
+        description:
+          "Jornada académica con ponentes nacionales e internacionales sobre investigación en Perú.",
+        date: new Date("2025-09-05"),
+        category: "ec",
+        tagLabel: "Explorando Ciencias",
+        image: "/images/bioinformatica.jpg",
+        location: "UNMSM, Lima",
+        featured: true,
+      },
+      {
+        title: "Encuentro Regional: Suramérica",
+        description:
+          "Actividad de integración con capítulos de Buenos Aires, Santiago y São Paulo.",
+        date: new Date("2025-09-20"),
+        category: "gl",
+        tagLabel: "Generando Lazos",
+        image: "/images/networking.png",
+        location: "Buenos Aires, Argentina",
+        featured: true,
+      },
+      {
+        title: "Seminario: Astrofísica y Cosmología",
+        description:
+          "Charlas sobre los últimos descubrimientos en astrofísica observacional y modelos cosmológicos.",
+        date: new Date("2025-10-10"),
+        category: "ec",
+        tagLabel: "Explorando Ciencias",
+        image: "/images/bioinformatica.jpg",
+        location: "Online",
+        featured: false,
+      },
+      {
+        title: "Taller: Redacción Científica",
+        description:
+          "Aprende a estructurar artículos científicos, escribir abstracts efectivos y navegar el proceso de publicación.",
+        date: new Date("2025-10-25"),
+        category: "ec",
+        tagLabel: "Explorando Ciencias",
+        image: "/images/bioinformatica.jpg",
+        location: "PUCP, Lima",
+        featured: false,
+      },
+    ],
+  });
+
+  // ── Oportunidades ──
+  await prisma.oportunidad.createMany({
+    data: [
+      {
+        title: "Beca de Investigación en Física Teórica",
+        description:
+          "Programa de 6 meses para estudiantes de pregrado con interés en investigación teórica. Incluye mentoría personalizada y financiamiento de materiales.",
+        deadline: new Date("2025-11-30"),
+        type: "becas",
+        externalLink: "https://ejemplo.com/beca-fisica-teorica",
+        year: 2025,
+      },
+      {
+        title: "Congreso Internacional de Ciencias Básicas",
+        description:
+          "4to Congreso Internacional con foco en ciencias básicas iberoamericanas. Abstracts abiertos hasta septiembre.",
+        deadline: new Date("2025-09-15"),
+        type: "congresos",
+        externalLink: "https://ejemplo.com/congreso-ciencias",
+        year: 2025,
+      },
+      {
+        title: "Traslado Académico: Universidad de Barcelona",
+        description:
+          "Convocatoria para estudiantes de ciencias que deseen realizar un semestre de intercambio en la UB.",
+        deadline: new Date("2025-12-01"),
+        type: "traslados",
+        year: 2025,
+      },
+      {
+        title: "Financiamiento para Proyectos de Innovación",
+        description:
+          "Convocatoria abierta para proyectos de investigación aplicada con impacto social. Hasta S/ 10,000 por proyecto.",
+        deadline: new Date("2025-10-15"),
+        type: "financiamientos",
+        externalLink: "https://ejemplo.com/financiamiento-innovacion",
+        year: 2025,
+      },
+      {
+        title: "Beca Perú – Brasil en Ciencias Naturales",
+        description:
+          "Programa bilateral de movilidad estudiantil entre universidades peruanas y brasileñas en áreas STEM.",
+        deadline: new Date("2026-03-01"),
+        type: "becas",
+        year: 2026,
+      },
+      {
+        title: "Congreso Iberoamericano de Estudiantes de Física",
+        description:
+          "Encuentro regional de estudiantes de física con charlas, talleres y oportunidades de networking internacional.",
+        deadline: new Date("2026-04-30"),
+        type: "congresos",
+        year: 2026,
+      },
+    ],
+  });
+
+  // ── Blog Posts ──
+  await prisma.blogPost.createMany({
+    data: [
+      {
+        title: "El estado de la deserción en ciencias básicas en Perú",
+        slug: "desercion-ciencias-basicas-peru",
+        content: `## El problema
+
+En 2019, realizamos un estudio sobre cohortes de Física en tres universidades peruanas y los resultados fueron alarmantes:
+
+- **Universidad A**: 82.7% de deserción
+- **Universidad B**: 36.4% de deserción  
+- **Universidad C**: 86.7% de deserción
+
+Estas cifras no son un problema local. A nivel iberoamericano, las carreras de ciencias básicas enfrentan retos similares.
+
+## Causas identificadas
+
+Las causas son multidimensionales:
+
+1. **Falta de comunidades de práctica** que acompañen al estudiante
+2. **Ausencia de mentorías** tempranas en investigación
+3. **Desconexión** entre el aula y la investigación real
+4. **Invisibilidad** de las oportunidades académicas disponibles
+
+## Nuestra propuesta
+
+En RIdeC creemos que la respuesta está en construir puentes: entre estudiantes, entre universidades, y entre la academia y la sociedad. Por eso trabajamos en comunidades, mentorías y proyectos que generan impacto real.`,
+        author: "Jorge Medina",
+        image: "/images/bioinformatica.jpg",
+        tags: "investigación,Perú,deserción,ciencias",
+        published: true,
+      },
+      {
+        title: "Física cuántica: por qué debería importarte",
+        slug: "fisica-cuantica-para-todos",
+        content: `## Más cerca de lo que crees
+
+La mecánica cuántica no es solo teoría abstracta. Está en tu teléfono, en los semáforos GPS, en los láseres y en los transistores que hacen posible la computación moderna.
+
+## Conceptos clave
+
+- **Superposición**: Un sistema puede estar en múltiples estados simultáneamente
+- **Entrelazamiento**: Partículas pueden estar conectadas instantáneamente
+- **Incertidumbre**: No podemos conocer todo sobre un sistema con precisión perfecta
+
+## ¿Por qué estudiarla?
+
+Los campos que se benefician del conocimiento cuántico crecen cada año:
+
+- Computación cuántica
+- Criptografía
+- Medicina cuántica
+- Simulación molecular
+
+> "Si crees que entiendes la mecánica cuántica, no la entiendes" — Richard Feynman`,
+        author: "Carla Pérez",
+        image: "/images/bioinformatica.jpg",
+        tags: "física cuántica,educación,ciencia",
+        published: true,
+      },
+      {
+        title: "3 razones para unirte a una comunidad científica",
+        slug: "razones-unirse-comunidad-cientifica",
+        content: `## No studiar solo
+
+La ciencia es un esfuerzo colectivo. Estudiar en aislamiento reduce la motivación y limita las perspectivas.
+
+## Razón 1: Aprendizaje colaborativo
+
+Cuando explicas un concepto a alguien más, lo aprendes mejor. Las comunidades de práctica permiten este intercambio constante.
+
+## Razón 2: Acceso a oportunidades
+
+En una comunidad, las convocatorias de becas, congresos y traslados circulan rápidamente. No te pierdes nada.
+
+## Razón 3: Networking real
+
+Los contactos que haces hoy son tus colegas de mañana. Una red científica activa abre puertas que el CV solo no abre.
+
+## Únete
+
+En RIdeC tenemos comunidades activas en 15+ universidades. Encuentra la tuya.`,
+        author: "Camila Suárez Díaz",
+        image: "/images/networking.png",
+        tags: "comunidad, networking, estudiantes",
+        published: true,
+      },
+    ],
+  });
+
+  // ── Usuarios ──
+  const admin = await prisma.user.upsert({
+    where: {
+      email: "admin@ridec.com",
+    },
+    update: {
+      password: adminPassword,
+      role: Role.ADMIN,
+    },
+    create: {
+      name: "Administrador",
+      email: "admin@ridec.com",
+      password: adminPassword,
+      role: Role.ADMIN,
+    },
+  });
+
+  const user = await prisma.user.upsert({
+    where: {
+      email: "user@ridec.com",
+    },
+    update: {
+      password: userPassword,
+      role: Role.USER,
+    },
+    create: {
+      name: "Usuario",
+      email: "user@ridec.com",
+      password: userPassword,
+      role: Role.USER,
+    },
+  });
+
+  console.log("Seed completado exitosamente");
+  console.log("Admin creado:", admin.email);
+  console.log("User creado:", user.email);
+}
+
+main()
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

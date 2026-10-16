@@ -61,12 +61,12 @@ export default function Sidebar({
               theme.radius.sm,
             )}
           >
-            <Image
+            {/* <Image
               src="/images/logo.jpeg"
-              alt="adoc.pe"
+              alt="logo"
               fill
               className="object-cover"
-            />
+            /> */}
           </div>
           {!collapsed && (
             <div className="min-w-0 flex-1 overflow-hidden">
@@ -77,7 +77,7 @@ export default function Sidebar({
                   theme.text.heading,
                 )}
               >
-                adoc<span className={theme.brand.primaryText}>.pe</span>
+                RIDEC
               </h1>
             </div>
           )}
