@@ -15,11 +15,14 @@ import {
   tdClass,
   thClass,
 } from "@/components/admin/ui";
+import { useAuth } from "@/context/AuthContext";
 
 export default function EventosPage() {
   const [items, setItems] = useState<EventoItem[]>([]);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<EventoItem | null>(null);
+
+  const { user, loading, logout } = useAuth();
 
   const fetchData = async () => {
     const res = await fetch("/api/eventos");
@@ -93,7 +96,10 @@ export default function EventosPage() {
               <th className={thClass}>Fecha</th>
               <th className={thClass}>Categoría</th>
               <th className={thClass}>Destacado</th>
-              <th className={thClass}>Acciones</th>
+              {
+                user?.role==="ADMIN" ? 
+                <th className={thClass}>Acciones</th> : ""
+              }
             </tr>
           </thead>
           <tbody>
@@ -116,7 +122,13 @@ export default function EventosPage() {
                     {e.category}
                   </span>
                 </td>
+
+
                 <td className={tdClass}>{e.featured ? "⭐" : "—"}</td>
+
+                {/* ACCIONES: EDITAR Y ELIMINAR */}
+
+                {user?.role==="ADMIN" ? 
                 <td className={tdClass}>
                   <div className="flex gap-1.5">
                     <button
@@ -132,7 +144,7 @@ export default function EventosPage() {
                       Eliminar
                     </button>
                   </div>
-                </td>
+                </td> : ""}
               </tr>
             ))}
           </tbody>

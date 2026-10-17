@@ -21,6 +21,7 @@ import {
 export default function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const {
     register,
@@ -30,8 +31,15 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  // ========================================
+  // PETICION PARA INCIAR SESSION
+  // ========================================
+
   const onSubmit = async (data: LoginFormData) => {
     try {
+
+      setServerError("")
+
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -44,6 +52,7 @@ export default function LoginForm() {
 
       if (!response.ok) {
         console.log(result.message)
+        setServerError(result.message)
         return;
       }
 
@@ -51,6 +60,7 @@ export default function LoginForm() {
       router.push("/dashboard");
     } catch (error) {
       console.error("Error de conexión:", error);
+      setServerError("No se pudo conectar al servidor. Intente nuevamente")
     }
   };
 
@@ -67,7 +77,9 @@ export default function LoginForm() {
           type="email"
           autoComplete="email"
           placeholder="nombre@correo.com"
-          {...register("email")}
+          {...register("email", {
+            onChange: () => setServerError(""),
+          })}
           className={formInput}
         />
 
@@ -94,13 +106,17 @@ export default function LoginForm() {
             type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             placeholder="••••••••"
-            {...register("password")}
+            {...register("password", {
+              onChange: () => setServerError(""),
+            })}
             className={`${formInput} pr-12`}
           />
 
           <button
             type="button"
-            onClick={() => setShowPassword((value) => !value)}
+            onClick={() => (
+              setShowPassword((value) => !value)
+            )}
             className="absolute right-3 top-1/2 -translate-y-1/2"
           >
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -113,11 +129,22 @@ export default function LoginForm() {
       </div>
 
       {/* Remember */}
-      <label className="flex items-center gap-2 text-sm">
+      {/* <label className="flex items-center gap-2 text-sm">
         <input type="checkbox" />
 
         <span>Recordarme</span>
-      </label>
+      </label> */}
+
+      {serverError && (
+        <div
+          role="alert"
+          aria-live="polite"
+          className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-30   "
+        > 
+          <p>{serverError}</p>
+        </div>
+      )}
+
 
       {/* Submit */}
       <button
@@ -129,13 +156,13 @@ export default function LoginForm() {
       </button>
 
       {/* Divider */}
-      <div className="flex items-center gap-4">
+      {/* <div className="flex items-center gap-4">
         <div className="h-px flex-1 bg-gray-200" />
 
         <span className="text-sm text-gray-400">o</span>
 
         <div className="h-px flex-1 bg-gray-200" />
-      </div>
+      </div> */}
 
       {/* Google */}
       {/* <button type="button" className="btn btn--outline-dark w-full">

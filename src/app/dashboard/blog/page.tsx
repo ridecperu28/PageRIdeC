@@ -12,11 +12,14 @@ import {
   tdClass,
   thClass,
 } from "@/components/admin/ui";
+import { useAuth } from "@/context/AuthContext";
 
 export default function BlogPage() {
   const [items, setItems] = useState<BlogItem[]>([]);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<BlogItem | null>(null);
+  
+  const {user, loading, logout} = useAuth();
 
   const fetchData = async () => {
     const res = await fetch("/api/blog?published=false");
@@ -90,7 +93,7 @@ export default function BlogPage() {
               <th className={thClass}>Autor</th>
               <th className={thClass}>Estado</th>
               <th className={thClass}>Slug</th>
-              <th className={thClass}>Acciones</th>
+              {user?.role==="ADMIN" ? <th className={thClass}>Acciones</th> : ""}
             </tr>
           </thead>
           <tbody>
@@ -114,7 +117,10 @@ export default function BlogPage() {
                 <td className={`${tdClass} font-mono text-xs text-slate-400`}>
                   {b.slug}
                 </td>
-                <td className={tdClass}>
+
+                {/* ACCIONES : EDITAR , ELIMINAR  */}
+
+                {user?.role === "ADMIN" ? <td className={tdClass}>
                   <div className="flex gap-1.5">
                     <button
                       className={`${btnGhostPlain} text-cyan-400`}
@@ -129,7 +135,7 @@ export default function BlogPage() {
                       Eliminar
                     </button>
                   </div>
-                </td>
+                </td> : ""}
               </tr>
             ))}
           </tbody>

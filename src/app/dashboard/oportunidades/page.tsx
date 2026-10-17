@@ -15,6 +15,7 @@ import {
   tdClass,
   thClass,
 } from "@/components/admin/ui";
+import { useAuth } from "@/context/AuthContext";
 
 function badgeVariant(type: string) {
   if (type === "becas") return badgeVariants.approved;
@@ -27,6 +28,8 @@ export default function OportunidadesPage() {
   const [items, setItems] = useState<OportunidadItem[]>([]);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<OportunidadItem | null>(null);
+
+  const { user, loading, logout } = useAuth();
 
   const fetchData = async () => {
     const res = await fetch("/api/oportunidades");
@@ -100,7 +103,7 @@ export default function OportunidadesPage() {
               <th className={thClass}>Tipo</th>
               <th className={thClass}>Año</th>
               <th className={thClass}>Fecha límite</th>
-              <th className={thClass}>Acciones</th>
+              { user?.role==="ADMIN" ? <th className={thClass}>Acciones</th> : ""}
             </tr>
           </thead>
           <tbody>
@@ -120,7 +123,10 @@ export default function OportunidadesPage() {
                     ? new Date(o.deadline).toLocaleDateString("es-PE")
                     : "—"}
                 </td>
-                <td className={tdClass}>
+
+                {/* ACCIONES : EDITAR Y ELIMINAR */}
+                
+                {user?.role === "ADMIN" ? <td className={tdClass}>
                   <div className="flex gap-1.5">
                     <button
                       className={`${btnGhostPlain} text-cyan-400`}
@@ -135,7 +141,7 @@ export default function OportunidadesPage() {
                       Eliminar
                     </button>
                   </div>
-                </td>
+                </td> : ""}
               </tr>
             ))}
           </tbody>
