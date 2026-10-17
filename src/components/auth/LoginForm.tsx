@@ -9,6 +9,18 @@ import { useState } from "react";
 import { loginSchema, type LoginFormData } from "@/schemas/auth.schema";
 import { useRouter } from "next/navigation";
 
+const authForm =
+  "flex flex-col gap-4 [@media(max-height:768px)]:gap-2.5 [@media(max-height:640px)]:gap-2";
+const formGroup = "flex flex-col gap-[0.35rem]";
+const formLabel = "text-sm font-medium text-[#333]";
+const formInput =
+  "w-full rounded-xl border border-[#e0e0e0] bg-white px-[0.9rem] py-[0.6rem] font-[family-name:var(--font-body)] text-base text-[#333] outline-none transition placeholder:text-[#94a3b8] focus:border-[#0d2c4f] focus:shadow-[0_0_0_3px_rgba(13,44,79,0.12)] [@media(max-height:640px)]:px-[0.85rem] [@media(max-height:640px)]:py-[0.45rem] [@media(max-height:640px)]:text-sm";
+const btnSubmit =
+  "mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-[family-name:var(--font-body)] text-base leading-none font-semibold text-[#060b18] no-underline transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0 [@media(max-height:768px)]:mt-0 [@media(max-height:768px)]:px-5 [@media(max-height:768px)]:py-[0.6rem] [@media(max-height:640px)]:px-5 [@media(max-height:640px)]:py-2";
+const authFormAlt = "m-0 text-center text-sm text-[#94a3b8]";
+const authFormLink =
+  "font-medium text-[#0d2c4f] no-underline transition-colors hover:text-[#005a9c] hover:underline";
+
 export default function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -46,10 +58,10 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
+    <form onSubmit={handleSubmit(onSubmit)} className={authForm}>
       {/* Email */}
-      <div className="form-group">
-        <label htmlFor="email" className="form-label">
+      <div className={formGroup}>
+        <label htmlFor="email" className={formLabel}>
           Correo electrónico
         </label>
 
@@ -59,7 +71,7 @@ export default function LoginForm() {
           autoComplete="email"
           placeholder="nombre@correo.com"
           {...register("email")}
-          className="form-input"
+          className={formInput}
         />
 
         {errors.email && (
@@ -68,9 +80,9 @@ export default function LoginForm() {
       </div>
 
       {/* Password */}
-      <div className="form-group">
+      <div className={formGroup}>
         <div className="mb-1 flex justify-between">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className={formLabel}>
             Contraseña
           </label>
 {/* 
@@ -86,7 +98,7 @@ export default function LoginForm() {
             autoComplete="current-password"
             placeholder="••••••••"
             {...register("password")}
-            className="form-input pr-12"
+            className={`${formInput} pr-12`}
           />
 
           <button
@@ -114,7 +126,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="btn btn--primary auth-form__submit w-full"
+        className={btnSubmit}
       >
         {isSubmitting ? "Ingresando..." : "Iniciar sesión"}
       </button>
@@ -134,9 +146,9 @@ export default function LoginForm() {
       </button> */}
 
       {/* Register */}
-      <p className="auth-form__alt">
+      <p className={authFormAlt}>
         ¿No tienes una cuenta?{" "}
-        <Link href="/register" className="auth-form__link">
+        <Link href="/register" className={authFormLink}>
           Crear una cuenta
         </Link>
       </p>

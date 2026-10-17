@@ -9,12 +9,6 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
 ];
 
-const resourceLinks = [
-  { href: "/blog", label: "Blog" },
-  { href: "/eventos", label: "Eventos" },
-  { href: "/oportunidades", label: "Oportunidades" },
-];
-
 const socials = [
   { icon: "/images/redes-sociales/icons8-instagram-50.svg", label: "Instagram", href: "https://www.instagram.com/ridecperu/" },
   { icon: "/images/redes-sociales/icons8-facebook-50.svg", label: "Facebook", href: "https://www.facebook.com/RIDECPERUOFICIAL" },
@@ -76,18 +70,6 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Recursos */}
-          {/* <div className="footer__col">
-            <h4 className="footer__heading">Recursos</h4>
-            <ul className="footer__links">
-              {resourceLinks.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="footer__link">{l.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div> */}
 
           {/* Contacto */}
           <div className="flex flex-col gap-4">

@@ -12,13 +12,13 @@ export default function RoleGuard({
   const { user } = useAuth();
 
   if (!user) {
-    return <p style={{ color: "var(--c-text-muted)" }}>Cargando...</p>;
+    return <p className="text-[#94a3b8]">Cargando...</p>;
   }
 
   if (!allowed.includes(user.role)) {
     return (
-      <div className="admin-empty">
-        <div className="admin-empty__icon">🔒</div>
+      <div className="p-12 text-center text-[#94a3b8]">
+        <div className="mb-6 text-[3rem] opacity-50">🔒</div>
         <p>Acceso restringido. No tienes permisos para esta sección.</p>
       </div>
     );

@@ -15,6 +15,15 @@ export interface BlogItem {
 
 export type BlogInput = Omit<BlogItem, "id">;
 
+const inputClass =
+  "w-full rounded-xl border border-[#e0e0e0] bg-white px-[0.9rem] py-[0.6rem] font-[family-name:var(--font-body)] text-base text-[#333] outline-none transition placeholder:text-[#94a3b8] focus:border-[#0d2c4f] focus:shadow-[0_0_0_3px_rgba(13,44,79,0.12)]";
+const formGroup = "flex flex-col gap-[0.35rem]";
+const formLabel = "text-sm font-medium text-[#333]";
+const btnPrimarySm =
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-4 py-2 font-[family-name:var(--font-body)] text-sm leading-none font-semibold text-[#060b18] no-underline transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0";
+const btnGhostSm =
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-transparent px-4 py-2 font-[family-name:var(--font-body)] text-sm leading-none font-semibold text-[#6c757d] no-underline transition duration-200 hover:-translate-y-px hover:bg-[#f7f9fc] hover:text-[#0d2c4f] active:translate-y-0";
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -47,92 +56,87 @@ export default function BlogModal({
   }
 
   return (
-    <div className="admin-modal" onClick={onCancel}>
+    <div
+      className="fixed inset-0 z-[1000] flex items-center justify-center overflow-y-auto bg-black/60 p-6"
+      onClick={onCancel}
+    >
       <div
-        className="admin-modal__box"
+        className="m-auto w-full max-w-[720px]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="admin-form">
-          <h3 className="admin-form__title">
+        <div className="rounded-2xl border border-white/[0.06] bg-white p-12">
+          <h3 className="mt-0 mb-8 font-[family-name:var(--font-heading)] text-lg font-bold text-[#0d2c4f]">
             {post ? "Editar publicación" : "Crear publicación"}
           </h3>
 
-          <div className="admin-form__grid">
-            <div className="form-group">
-              <label className="form-label" htmlFor="blog-title">Título</label>
+          <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
+            <div className={formGroup}>
+              <label className={formLabel} htmlFor="blog-title">Título</label>
               <input
                 id="blog-title"
-                className="form-input"
+                className={inputClass}
                 type="text"
                 value={title}
                 onChange={(e) => handleTitle(e.target.value)}
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="blog-slug">Slug</label>
+            <div className={formGroup}>
+              <label className={formLabel} htmlFor="blog-slug">Slug</label>
               <input
                 id="blog-slug"
-                className="form-input"
+                className={inputClass}
                 type="text"
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="blog-author">Autor</label>
+            <div className={formGroup}>
+              <label className={formLabel} htmlFor="blog-author">Autor</label>
               <input
                 id="blog-author"
-                className="form-input"
+                className={inputClass}
                 type="text"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="blog-image">Imagen (URL)</label>
+            <div className={formGroup}>
+              <label className={formLabel} htmlFor="blog-image">Imagen (URL)</label>
               <input
                 id="blog-image"
-                className="form-input"
+                className={inputClass}
                 type="text"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
             </div>
 
-            <div className="form-group form-group--full">
-              <label className="form-label" htmlFor="blog-tags">Tags (separados por coma)</label>
+            <div className={`${formGroup} col-span-full`}>
+              <label className={formLabel} htmlFor="blog-tags">Tags (separados por coma)</label>
               <input
                 id="blog-tags"
-                className="form-input"
+                className={inputClass}
                 type="text"
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
               />
             </div>
 
-            <div className="form-group form-group--full">
-              <label className="form-label" htmlFor="blog-content">Contenido</label>
+            <div className={`${formGroup} col-span-full`}>
+              <label className={formLabel} htmlFor="blog-content">Contenido</label>
               <textarea
                 id="blog-content"
-                className="form-input"
+                className={`${inputClass} min-h-[120px] resize-y`}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
             </div>
 
-            <div className="form-group">
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  cursor: "pointer",
-                  color: "var(--c-text)",
-                }}
-              >
+            <div className={formGroup}>
+              <label className="flex cursor-pointer items-center gap-2 text-[#333]">
                 <input
                   type="checkbox"
                   checked={published}
@@ -143,16 +147,16 @@ export default function BlogModal({
             </div>
           </div>
 
-          <div className="admin-form__actions">
+          <div className="mt-8 flex gap-2">
             <button
-              className="btn btn--primary btn--sm"
+              className={btnPrimarySm}
               onClick={() =>
                 onSave({ title, slug, author, image, tags, content, published })
               }
             >
               Guardar
             </button>
-            <button className="btn btn--ghost btn--sm" onClick={onCancel}>
+            <button className={btnGhostSm} onClick={onCancel}>
               Cancelar
             </button>
           </div>

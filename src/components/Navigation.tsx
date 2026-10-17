@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { theme } from "@/lib/theme";
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
 
@@ -46,8 +44,8 @@ export default function Sidebar({
     <aside
       className={cn(
         "min-h-screen border-r transition-all duration-300",
-        theme.border.default,
-        theme.bg.sidebar,
+        "border-gray-200/80",
+        "bg-white",
         "flex h-full flex-col",
         collapsed ? "w-[60px]" : "w-[160px]",
       )}
@@ -58,7 +56,7 @@ export default function Sidebar({
           <div
             className={cn(
               "relative h-8 w-8 shrink-0 overflow-hidden",
-              theme.radius.sm,
+              "rounded-lg",
             )}
           >
             {/* <Image
@@ -72,9 +70,9 @@ export default function Sidebar({
             <div className="min-w-0 flex-1 overflow-hidden">
               <h1
                 className={cn(
-                  theme.typography.cardTitle,
+                  "text-[15px] font-semibold",
                   "tracking-tight",
-                  theme.text.heading,
+                  "text-gray-900",
                 )}
               >
                 RIDEC
@@ -135,7 +133,7 @@ export default function Sidebar({
           <p
             className={cn(
               "mb-2 px-3 text-[11px] font-medium uppercase tracking-wider",
-              theme.text.subtle,
+              "text-gray-400",
             )}
           >
             Menu
@@ -152,22 +150,19 @@ export default function Sidebar({
                   title={collapsed ? item.label : undefined}
                   className={cn(
                     "group relative flex items-center gap-3 px-3 py-2.5 transition-all duration-150",
-                    theme.radius.sm,
-                    theme.typography.label,
+                    "rounded-lg",
+                    "text-[13px] font-medium",
                     collapsed && "justify-center px-0",
                     isActive
-                      ? cn(theme.brand.primaryLight, "text-[#0d2c4f]")
-                      : cn(
-                          theme.text.muted,
-                          "hover:bg-gray-50 hover:text-gray-900",
-                        ),
+                      ? cn("bg-blue-50", "text-[#0d2c4f]")
+                      : cn("text-gray-500", "hover:bg-gray-50 hover:text-gray-900"),
                   )}
                 >
                   {isActive && (
                     <div
                       className={cn(
                         "absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full",
-                        theme.brand.primaryBg,
+                        "bg-[#0d2c4f]",
                       )}
                     />
                   )}
@@ -181,7 +176,7 @@ export default function Sidebar({
       </nav>
 
       {/* Bottom — User + Sign out */}
-      <div className={cn("border-t", theme.border.light, "px-3 py-3")}>
+      <div className={cn("border-t", "border-gray-100", "px-3 py-3")}>
         <div
           className={cn("my-2", collapsed ? "mx-auto h-px w-6" : "h-px")}
           style={collapsed ? undefined : {}}
@@ -193,9 +188,9 @@ export default function Sidebar({
           title={collapsed ? "Cerrar sesión" : undefined}
           className={cn(
             "flex w-full items-center gap-3 transition-all duration-150 hover:bg-gray-50",
-            theme.radius.sm,
-            theme.typography.label,
-            theme.text.subtle,
+            "rounded-lg",
+            "text-[13px] font-medium",
+            "text-gray-400",
             collapsed ? "justify-center px-0 py-2.5" : "px-3 py-2.5",
           )}
         >
@@ -223,17 +218,17 @@ export default function Sidebar({
           }
           className={cn(
             "flex w-full items-center gap-3 transition-all duration-150 hover:bg-gray-50",
-            theme.radius.sm,
-            theme.typography.label,
-            theme.text.muted,
+            "rounded-lg",
+            "text-[13px] font-medium",
+            "text-gray-500",
             collapsed ? "justify-center px-0 py-2.5" : "px-3 py-2.5",
           )}
         >
           <div
             className={cn(
               "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-medium",
-              theme.dark.bg,
-              theme.dark.text,
+              "bg-gray-900",
+              "text-white",
             )}
           >
             {mounted ? user?.name?.charAt(0)?.toUpperCase() || "A" : "A"}
@@ -244,12 +239,12 @@ export default function Sidebar({
                 <p
                   className={cn(
                     "truncate text-[13px] font-medium",
-                    theme.text.heading,
+                    "text-gray-900",
                   )}
                 >
                   {mounted ? user?.name || "User" : "user@adoc.pe"}
                 </p>
-                <p className={cn("truncate text-[11px]", theme.text.subtle)}>
+                <p className={cn("truncate text-[11px]", "text-gray-400")}>
                   {mounted ? user?.email || "user@adoc.pe" : "user@adoc.pe"}
                 </p>
               </div>

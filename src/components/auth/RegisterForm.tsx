@@ -7,6 +7,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { registerSchema, type RegisterFormData } from "@/schemas/auth.schema";
 
+const authForm =
+  "flex flex-col gap-4 [@media(max-height:768px)]:gap-2.5 [@media(max-height:640px)]:gap-2";
+const formGroup = "flex flex-col gap-[0.35rem]";
+const formLabel = "text-sm font-medium text-[#333]";
+const formInput =
+  "w-full rounded-xl border border-[#e0e0e0] bg-white px-[0.9rem] py-[0.6rem] font-[family-name:var(--font-body)] text-base text-[#333] outline-none transition placeholder:text-[#94a3b8] focus:border-[#0d2c4f] focus:shadow-[0_0_0_3px_rgba(13,44,79,0.12)] [@media(max-height:640px)]:px-[0.85rem] [@media(max-height:640px)]:py-[0.45rem] [@media(max-height:640px)]:text-sm";
+const btnSubmit =
+  "mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-[family-name:var(--font-body)] text-base leading-none font-semibold text-[#060b18] no-underline transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0 [@media(max-height:768px)]:mt-0 [@media(max-height:768px)]:px-5 [@media(max-height:768px)]:py-[0.6rem] [@media(max-height:640px)]:px-5 [@media(max-height:640px)]:py-2";
+
 export default function RegisterForm() {
   const router = useRouter();
   const [message, setMessage] = useState<string | null>(null);
@@ -43,9 +52,9 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
-      <div className="form-group">
-        <label htmlFor="name" className="form-label">
+    <form onSubmit={handleSubmit(onSubmit)} className={authForm}>
+      <div className={formGroup}>
+        <label htmlFor="name" className={formLabel}>
           Nombre
         </label>
 
@@ -54,7 +63,7 @@ export default function RegisterForm() {
           {...register("name")}
           type="text"
           placeholder="Tu nombre"
-          className="form-input"
+          className={formInput}
         />
 
         {errors.name && (
@@ -62,8 +71,8 @@ export default function RegisterForm() {
         )}
       </div>
 
-      <div className="form-group">
-        <label htmlFor="email" className="form-label">
+      <div className={formGroup}>
+        <label htmlFor="email" className={formLabel}>
           Correo electrónico
         </label>
 
@@ -72,7 +81,7 @@ export default function RegisterForm() {
           {...register("email")}
           type="email"
           placeholder="tu@email.com"
-          className="form-input"
+          className={formInput}
         />
 
         {errors.email && (
@@ -80,8 +89,8 @@ export default function RegisterForm() {
         )}
       </div>
 
-      <div className="form-group">
-        <label htmlFor="password" className="form-label">
+      <div className={formGroup}>
+        <label htmlFor="password" className={formLabel}>
           Contraseña
         </label>
 
@@ -90,7 +99,7 @@ export default function RegisterForm() {
           {...register("password")}
           type="password"
           placeholder="••••••••"
-          className="form-input"
+          className={formInput}
         />
 
         {errors.password && (
@@ -98,8 +107,8 @@ export default function RegisterForm() {
         )}
       </div>
 
-      <div className="form-group">
-        <label htmlFor="confirmPassword" className="form-label">
+      <div className={formGroup}>
+        <label htmlFor="confirmPassword" className={formLabel}>
           Confirmar contraseña
         </label>
 
@@ -108,7 +117,7 @@ export default function RegisterForm() {
           {...register("confirmPassword")}
           type="password"
           placeholder="••••••••"
-          className="form-input"
+          className={formInput}
         />
 
         {errors.confirmPassword && (
@@ -118,7 +127,7 @@ export default function RegisterForm() {
         )}
       </div>
 
-      <div className="form-group">
+      <div className={formGroup}>
         <label className="flex items-start gap-2 text-sm">
           <input
             id="terms"
@@ -139,7 +148,7 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="btn btn--primary auth-form__submit w-full"
+        className={btnSubmit}
       >
         {isSubmitting ? "Creando cuenta..." : "Crear cuenta"}
       </button>

@@ -3,6 +3,13 @@
 import { useState, useEffect } from "react";
 import RoleGuard from "@/components/admin/RoleGuard";
 
+const statGrid =
+  "mb-16 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 max-md:grid-cols-2";
+const statCard = "rounded-2xl border border-white/[0.06] bg-white p-8";
+const statNumber =
+  "m-0 font-[family-name:var(--font-heading)] text-[1.25rem] font-bold text-[#0d2c4f] md:text-[1.75rem]";
+const statLabel = "mt-1 text-sm text-[#94a3b8]";
+
 interface User {
   id: number;
   name: string;
@@ -40,74 +47,69 @@ export default function EstadisticasPage() {
 
   return (
     <RoleGuard allowed={["ADMIN"]}>
-      <div className="admin-header">
+      <div className="mb-16 flex items-center justify-between">
         <div>
-          <h1 className="admin-header__title">Estadísticas</h1>
-          <p className="admin-header__subtitle">
+          <h1 className="m-0 font-[family-name:var(--font-heading)] text-2xl font-bold text-[#0d2c4f]">
+            Estadísticas
+          </h1>
+          <p className="mt-1 text-sm text-[#94a3b8]">
             Resumen general de la plataforma
           </p>
         </div>
       </div>
 
-      <div className="admin-stats">
-        <div className="admin-stat">
-          <p className="admin-stat__number">{users.length}</p>
-          <p className="admin-stat__label">Usuarios totales</p>
+      <div className={statGrid}>
+        <div className={statCard}>
+          <p className={statNumber}>{users.length}</p>
+          <p className={statLabel}>Usuarios totales</p>
         </div>
-        <div className="admin-stat">
-          <p className="admin-stat__number">
+        <div className={statCard}>
+          <p className={statNumber}>
             {users.filter((u) => u.status === "approved").length}
           </p>
-          <p className="admin-stat__label">Aprobados</p>
+          <p className={statLabel}>Aprobados</p>
         </div>
-        <div className="admin-stat">
-          <p className="admin-stat__number">{pendingCount}</p>
-          <p className="admin-stat__label">Pendientes</p>
+        <div className={statCard}>
+          <p className={statNumber}>{pendingCount}</p>
+          <p className={statLabel}>Pendientes</p>
         </div>
-        <div className="admin-stat">
-          <p className="admin-stat__number">
+        <div className={statCard}>
+          <p className={statNumber}>
             {users.filter((u) => u.status === "rejected").length}
           </p>
-          <p className="admin-stat__label">Rechazados</p>
+          <p className={statLabel}>Rechazados</p>
         </div>
       </div>
 
-      <div className="admin-stats">
-        <div className="admin-stat">
-          <p className="admin-stat__number">{events.length}</p>
-          <p className="admin-stat__label">Eventos</p>
+      <div className={statGrid}>
+        <div className={statCard}>
+          <p className={statNumber}>{events.length}</p>
+          <p className={statLabel}>Eventos</p>
         </div>
-        <div className="admin-stat">
-          <p className="admin-stat__number">{oportunidades.length}</p>
-          <p className="admin-stat__label">Oportunidades</p>
+        <div className={statCard}>
+          <p className={statNumber}>{oportunidades.length}</p>
+          <p className={statLabel}>Oportunidades</p>
         </div>
-        <div className="admin-stat">
-          <p className="admin-stat__number">
+        <div className={statCard}>
+          <p className={statNumber}>
             {blogPosts.filter((b) => b.published).length}
           </p>
-          <p className="admin-stat__label">Blog publicados</p>
+          <p className={statLabel}>Blog publicados</p>
         </div>
-        <div className="admin-stat">
-          <p className="admin-stat__number">
+        <div className={statCard}>
+          <p className={statNumber}>
             {blogPosts.filter((b) => !b.published).length}
           </p>
-          <p className="admin-stat__label">Blog borradores</p>
+          <p className={statLabel}>Blog borradores</p>
         </div>
       </div>
 
       {users.length > 0 && (
         <>
-          <h2
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontSize: "var(--fs-lg)",
-              color: "var(--c-heading)",
-              margin: "var(--sp-xl) 0 var(--sp-md)",
-            }}
-          >
+          <h2 className="mt-12 mb-6 font-[family-name:var(--font-heading)] text-lg text-[#0d2c4f]">
             Por universidad
           </h2>
-          <div className="admin-stats">
+          <div className={statGrid}>
             {Object.entries(
               users.reduce<Record<string, number>>((acc, u) => {
                 const uni = u.university || "Sin especificar";
@@ -117,9 +119,9 @@ export default function EstadisticasPage() {
             )
               .sort((a, b) => b[1] - a[1])
               .map(([uni, count]) => (
-                <div className="admin-stat" key={uni}>
-                  <p className="admin-stat__number">{count}</p>
-                  <p className="admin-stat__label">{uni}</p>
+                <div className={statCard} key={uni}>
+                  <p className={statNumber}>{count}</p>
+                  <p className={statLabel}>{uni}</p>
                 </div>
               ))}
           </div>

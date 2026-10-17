@@ -149,14 +149,14 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     : [];
 
   return (
-    <div className="admin-layout">
+    <div className="flex min-h-screen bg-[#f7f9fc]">
       <Sidebar
         menuItems={items}
         collapsed={!sidebarOpen}
         onToggle={() => setSidebarOpen((o) => !o)}
       />
 
-      <main className="admin-content">{children}</main>
+      <main className="flex-1 overflow-x-hidden p-16 max-md:px-6 max-md:py-8">{children}</main>
     </div>
   );
 }
