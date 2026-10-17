@@ -25,7 +25,7 @@ export default function EventosPage() {
   const { user, loading, logout } = useAuth();
 
   const fetchData = async () => {
-    const res = await fetch("/api/eventos");
+    const res = await fetch("/api/eventos?dashboard=true");
     setItems(await res.json());
   };
 
@@ -128,7 +128,7 @@ export default function EventosPage() {
 
                 {/* ACCIONES: EDITAR Y ELIMINAR */}
 
-                {user?.role==="ADMIN" ? 
+                {(user?.role==="ADMIN" || user?.id===e.creatorId )? 
                 <td className={tdClass}>
                   <div className="flex gap-1.5">
                     <button
@@ -137,12 +137,12 @@ export default function EventosPage() {
                     >
                       Editar
                     </button>
-                    <button
+                    {/* <button
                       className={`${btnGhostPlain} text-red-400`}
                       onClick={() => handleDelete(e.id)}
                     >
                       Eliminar
-                    </button>
+                    </button> */}
                   </div>
                 </td> : ""}
               </tr>

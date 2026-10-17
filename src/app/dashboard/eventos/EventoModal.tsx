@@ -25,9 +25,10 @@ export interface EventoItem {
   image: string;
   location: string | null;
   featured: boolean;
+  creatorId: number;
 }
 
-export type EventoInput = Omit<EventoItem, "id">;
+export type EventoInput = Omit<EventoItem, "id" | "creatorId">;
 
 export default function EventoModal({
   evento,
@@ -152,6 +153,7 @@ export default function EventoModal({
             </div>
           </div>
 
+          {/* ENVIAR EVENTO  */}
           <div className={adminFormActions}>
             <button
               className={btnPrimarySm}
