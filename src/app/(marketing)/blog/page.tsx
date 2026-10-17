@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import Image from "next/image";
 
 export default async function BlogPage() {
   const posts = await prisma.blogPost.findMany({
@@ -10,13 +9,6 @@ export default async function BlogPage() {
 
   return (
     <div className="mx-auto min-h-screen max-w-[1200px] space-y-8 px-4 py-16 md:px-8">
-      {/* <section>
-        <h1 className="section-header__title mb-4">Blog</h1>
-        <p className="text-slate-500">
-          Noticias, artículos y reflexiones sobre ciencias básicas en Iberoamérica.
-        </p>
-      </section> */}
-
       <section className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {posts.map((post) => (
           <Link
@@ -24,15 +16,6 @@ export default async function BlogPage() {
             href={`/blog/${post.slug}`}
             className="block w-full overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)]"
           >
-            {post.image && (
-              <Image
-                src={post.image}
-                alt={post.title}
-                width={400}
-                height={200}
-                className="h-[180px] w-full object-cover"
-              />
-            )}
             <div className="p-6">
               <div className="mb-1 text-xs text-[#94a3b8]">
                 {new Date(post.createdAt).toLocaleDateString("es-PE", {

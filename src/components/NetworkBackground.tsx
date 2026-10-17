@@ -119,9 +119,9 @@ export default function NetworkBackground() {
   }));
 
   return (
-    <div className="network-bg">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#060b18]">
       <svg
-        className="network-container"
+        className="pointer-events-none h-full w-full"
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         preserveAspectRatio="xMidYMid slice"
       >
