@@ -73,10 +73,10 @@ export default function LoginForm() {
           <label htmlFor="password" className="form-label">
             Contraseña
           </label>
-
+{/* 
           <Link href="/forgot-password" className="auth-form__link">
             ¿Olvidaste tu contraseña?
-          </Link>
+          </Link> */}
         </div>
 
         <div className="relative">
@@ -129,9 +129,9 @@ export default function LoginForm() {
       </div>
 
       {/* Google */}
-      <button type="button" className="btn btn--outline-dark w-full">
+      {/* <button type="button" className="btn btn--outline-dark w-full">
         Continuar con Google
-      </button>
+      </button> */}
 
       {/* Register */}
       <p className="auth-form__alt">

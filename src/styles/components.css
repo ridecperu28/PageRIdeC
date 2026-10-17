@@ -1952,6 +1952,34 @@
   margin-top: var(--sp-lg);
 }
 
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-md);
+  background: rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+}
+
+.admin-modal__box {
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+}
+
+.admin-modal .admin-form {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .admin-modal .admin-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-sidebar {
     display: none;

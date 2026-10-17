@@ -2,18 +2,12 @@
 
 import { useState, useEffect } from "react";
 import RoleGuard from "@/components/admin/RoleGuard";
-import AdminForm from "@/components/admin/AdminForm";
-import {
-  blogFields,
-  slugify,
-  type AdminBlogPost,
-  type FormData,
-} from "@/components/admin/fields";
+import BlogModal, { type BlogItem, type BlogInput } from "./BlogModal";
 
 export default function BlogPage() {
-  const [items, setItems] = useState<AdminBlogPost[]>([]);
-  const [showForm, setShowForm] = useState<"create" | number | null>(null);
-  const [formValues, setFormValues] = useState<FormData>({});
+  const [items, setItems] = useState<BlogItem[]>([]);
+  const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState<BlogItem | null>(null);
 
   const fetchData = async () => {
     const res = await fetch("/api/blog?published=false");
@@ -25,43 +19,16 @@ export default function BlogPage() {
     fetchData();
   }, []);
 
-  function openCreate() {
-    setShowForm("create");
-    setFormValues({
-      title: "",
-      content: "",
-      author: "",
-      image: "",
-      tags: "",
-      published: false,
-    });
-  }
-
-  function openEdit(item: AdminBlogPost) {
-    setShowForm(item.id);
-    setFormValues({ ...item });
-  }
-
-  function handleChange(name: string, value: string | boolean | number) {
-    setFormValues((prev) => {
-      const next = { ...prev, [name]: value };
-      if (name === "title" && showForm === "create")
-        next.slug = slugify(String(value));
-      return next;
-    });
-  }
-
-  async function handleSave() {
-    const isEdit = typeof showForm === "number";
-    const url = isEdit ? `/api/blog/${showForm}` : "/api/blog";
-    const method = isEdit ? "PUT" : "POST";
+  async function handleSave(data: BlogInput) {
+    const url = editing ? `/api/blog/${editing.id}` : "/api/blog";
+    const method = editing ? "PUT" : "POST";
     await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
+      body: JSON.stringify(data),
     });
-    setShowForm(null);
-    setFormValues({});
+    setCreating(false);
+    setEditing(null);
     fetchData();
   }
 
@@ -81,24 +48,23 @@ export default function BlogPage() {
           </p>
         </div>
         <div className="admin-header__actions">
-          <button className="btn btn--primary btn--sm" onClick={openCreate}>
+          <button
+            className="btn btn--primary btn--sm"
+            onClick={() => setCreating(true)}
+          >
             + Crear publicación
           </button>
         </div>
       </div>
 
-      {showForm !== null && (
-        <AdminForm
-          title={
-            showForm === "create" ? "Crear publicación" : "Editar publicación"
-          }
-          fields={blogFields}
-          values={formValues}
-          onChange={handleChange}
+      {(creating || editing) && (
+        <BlogModal
+          key={editing?.id ?? "new"}
+          post={editing}
           onSave={handleSave}
           onCancel={() => {
-            setShowForm(null);
-            setFormValues({});
+            setCreating(false);
+            setEditing(null);
           }}
         />
       )}
@@ -147,7 +113,7 @@ export default function BlogPage() {
                     <button
                       className="btn btn--ghost btn--sm"
                       style={{ color: "var(--c-cyan)" }}
-                      onClick={() => openEdit(b)}
+                      onClick={() => setEditing(b)}
                     >
                       Editar
                     </button>

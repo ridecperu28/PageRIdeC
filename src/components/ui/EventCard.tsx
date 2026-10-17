@@ -21,13 +21,13 @@ export default function EventCard({
 }: EventCardProps) {
   return (
     <div className="event-card">
-      <Image
+      {/* <Image
         src={image}
         alt={title}
         width={400}
         height={200}
         className="event-card__img"
-      />
+      /> */}
       <div className="event-card__body">
         <span className={`event-card__tag event-card__tag--${category}`}>
           {tagLabel}

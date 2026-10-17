@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from "react";
 import RoleGuard from "@/components/admin/RoleGuard";
-import AdminForm from "@/components/admin/AdminForm";
-import {
-  opportunityFields,
-  type AdminOportunidad,
-  type FormData,
-} from "@/components/admin/fields";
+import OportunidadModal, {
+  type OportunidadItem,
+  type OportunidadInput,
+} from "./OportunidadModal";
 
 export default function OportunidadesPage() {
-  const [items, setItems] = useState<AdminOportunidad[]>([]);
-  const [showForm, setShowForm] = useState<"create" | number | null>(null);
-  const [formValues, setFormValues] = useState<FormData>({});
+  const [items, setItems] = useState<OportunidadItem[]>([]);
+  const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState<OportunidadItem | null>(null);
 
   const fetchData = async () => {
     const res = await fetch("/api/oportunidades");
@@ -24,41 +22,16 @@ export default function OportunidadesPage() {
     fetchData();
   }, []);
 
-  function openCreate() {
-    setShowForm("create");
-    setFormValues({
-      title: "",
-      description: "",
-      deadline: "",
-      type: "becas",
-      externalLink: "",
-      image: "",
-      year: new Date().getFullYear(),
-    });
-  }
-
-  function openEdit(item: AdminOportunidad) {
-    setShowForm(item.id);
-    setFormValues({ ...item });
-  }
-
-  function handleChange(name: string, value: string | boolean | number) {
-    setFormValues((prev) => ({ ...prev, [name]: value }));
-  }
-
-  async function handleSave() {
-    const isEdit = typeof showForm === "number";
-    const url = isEdit
-      ? `/api/oportunidades/${showForm}`
-      : "/api/oportunidades";
-    const method = isEdit ? "PUT" : "POST";
+  async function handleSave(data: OportunidadInput) {
+    const url = editing ? `/api/oportunidades/${editing.id}` : "/api/oportunidades";
+    const method = editing ? "PUT" : "POST";
     await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
+      body: JSON.stringify(data),
     });
-    setShowForm(null);
-    setFormValues({});
+    setCreating(false);
+    setEditing(null);
     fetchData();
   }
 
@@ -78,24 +51,23 @@ export default function OportunidadesPage() {
           </p>
         </div>
         <div className="admin-header__actions">
-          <button className="btn btn--primary btn--sm" onClick={openCreate}>
+          <button
+            className="btn btn--primary btn--sm"
+            onClick={() => setCreating(true)}
+          >
             + Crear oportunidad
           </button>
         </div>
       </div>
 
-      {showForm !== null && (
-        <AdminForm
-          title={
-            showForm === "create" ? "Crear oportunidad" : "Editar oportunidad"
-          }
-          fields={opportunityFields}
-          values={formValues}
-          onChange={handleChange}
+      {(creating || editing) && (
+        <OportunidadModal
+          key={editing?.id ?? "new"}
+          oportunidad={editing}
           onSave={handleSave}
           onCancel={() => {
-            setShowForm(null);
-            setFormValues({});
+            setCreating(false);
+            setEditing(null);
           }}
         />
       )}
@@ -140,7 +112,7 @@ export default function OportunidadesPage() {
                     <button
                       className="btn btn--ghost btn--sm"
                       style={{ color: "var(--c-cyan)" }}
-                      onClick={() => openEdit(o)}
+                      onClick={() => setEditing(o)}
                     >
                       Editar
                     </button>

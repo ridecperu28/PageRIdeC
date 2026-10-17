@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from "react";
 import RoleGuard from "@/components/admin/RoleGuard";
-import AdminForm from "@/components/admin/AdminForm";
-import {
-  eventFields,
-  type AdminEvent,
-  type FormData,
-} from "@/components/admin/fields";
+import EventoModal, {
+  type EventoItem,
+  type EventoInput,
+} from "./EventoModal";
 
 export default function EventosPage() {
-  const [items, setItems] = useState<AdminEvent[]>([]);
-  const [showForm, setShowForm] = useState<"create" | number | null>(null);
-  const [formValues, setFormValues] = useState<FormData>({});
+  const [items, setItems] = useState<EventoItem[]>([]);
+  const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState<EventoItem | null>(null);
 
   const fetchData = async () => {
     const res = await fetch("/api/eventos");
@@ -24,40 +22,16 @@ export default function EventosPage() {
     fetchData();
   }, []);
 
-  function openCreate() {
-    setShowForm("create");
-    setFormValues({
-      title: "",
-      description: "",
-      date: "",
-      category: "ec",
-      tagLabel: "",
-      image: "",
-      location: "",
-      featured: false,
-    });
-  }
-
-  function openEdit(item: AdminEvent) {
-    setShowForm(item.id);
-    setFormValues({ ...item });
-  }
-
-  function handleChange(name: string, value: string | boolean | number) {
-    setFormValues((prev) => ({ ...prev, [name]: value }));
-  }
-
-  async function handleSave() {
-    const isEdit = typeof showForm === "number";
-    const url = isEdit ? `/api/eventos/${showForm}` : "/api/eventos";
-    const method = isEdit ? "PUT" : "POST";
+  async function handleSave(data: EventoInput) {
+    const url = editing ? `/api/eventos/${editing.id}` : "/api/eventos";
+    const method = editing ? "PUT" : "POST";
     await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
+      body: JSON.stringify(data),
     });
-    setShowForm(null);
-    setFormValues({});
+    setCreating(false);
+    setEditing(null);
     fetchData();
   }
 
@@ -77,22 +51,23 @@ export default function EventosPage() {
           </p>
         </div>
         <div className="admin-header__actions">
-          <button className="btn btn--primary btn--sm" onClick={openCreate}>
+          <button
+            className="btn btn--primary btn--sm"
+            onClick={() => setCreating(true)}
+          >
             + Crear evento
           </button>
         </div>
       </div>
 
-      {showForm !== null && (
-        <AdminForm
-          title={showForm === "create" ? "Crear evento" : "Editar evento"}
-          fields={eventFields}
-          values={formValues}
-          onChange={handleChange}
+      {(creating || editing) && (
+        <EventoModal
+          key={editing?.id ?? "new"}
+          evento={editing}
           onSave={handleSave}
           onCancel={() => {
-            setShowForm(null);
-            setFormValues({});
+            setCreating(false);
+            setEditing(null);
           }}
         />
       )}
@@ -133,7 +108,7 @@ export default function EventosPage() {
                     <button
                       className="btn btn--ghost btn--sm"
                       style={{ color: "var(--c-cyan)" }}
-                      onClick={() => openEdit(e)}
+                      onClick={() => setEditing(e)}
                     >
                       Editar
                     </button>
