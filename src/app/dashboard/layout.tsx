@@ -149,7 +149,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     : [];
 
   return (
-    <div className="flex min-h-screen bg-[#f7f9fc]">
+    <div className="flex min-h-screen bg-slate-50">
       <Sidebar
         menuItems={items}
         collapsed={!sidebarOpen}

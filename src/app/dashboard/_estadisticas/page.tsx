@@ -5,10 +5,10 @@ import RoleGuard from "@/components/admin/RoleGuard";
 
 const statGrid =
   "mb-16 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 max-md:grid-cols-2";
-const statCard = "rounded-2xl border border-white/[0.06] bg-white p-8";
+const statCard = "rounded-2xl bg-white p-8";
 const statNumber =
-  "m-0 font-[family-name:var(--font-heading)] text-[1.25rem] font-bold text-[#0d2c4f] md:text-[1.75rem]";
-const statLabel = "mt-1 text-sm text-[#94a3b8]";
+  "font-[family-name:var(--font-heading)] text-[1.25rem] font-bold text-[#0d2c4f] md:text-[1.75rem]";
+const statLabel = "mt-1 text-sm text-slate-400";
 
 interface User {
   id: number;
@@ -49,10 +49,10 @@ export default function EstadisticasPage() {
     <RoleGuard allowed={["ADMIN"]}>
       <div className="mb-16 flex items-center justify-between">
         <div>
-          <h1 className="m-0 font-[family-name:var(--font-heading)] text-2xl font-bold text-[#0d2c4f]">
+          <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[#0d2c4f]">
             Estadísticas
           </h1>
-          <p className="mt-1 text-sm text-[#94a3b8]">
+          <p className="mt-1 text-sm text-slate-400">
             Resumen general de la plataforma
           </p>
         </div>

@@ -11,13 +11,13 @@ const brandLogo =
 const brandTitle =
   "mb-4 font-[family-name:var(--font-heading)] text-[clamp(1.75rem,4vw,3rem)] font-extrabold leading-[1.15] [@media(max-height:768px)]:text-[clamp(1.5rem,3vw,2.25rem)] [@media(max-height:640px)]:text-2xl";
 const brandSubtitle =
-  "mx-auto mb-8 max-w-[460px] text-lg leading-[1.6] text-[#94a3b8] [@media(max-height:768px)]:mb-4 [@media(max-height:768px)]:text-base";
+  "mx-auto mb-8 max-w-[460px] text-lg leading-[1.6] text-slate-400 [@media(max-height:768px)]:mb-4 [@media(max-height:768px)]:text-base";
 const brandFeatures =
-  "m-0 flex list-none flex-col items-center gap-2 p-0 text-sm text-[#cbd5e1] [@media(max-height:768px)]:gap-1";
+  "flex flex-col items-center gap-2 text-sm text-slate-300 [@media(max-height:768px)]:gap-1";
 const brandCheck =
-  "mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/15 text-[0.7rem] font-bold text-[#22d3ee]";
+  "mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/15 text-[0.7rem] font-bold text-cyan-400";
 const panel =
-  "flex min-h-0 flex-1 flex-col bg-[#f7f9fc] p-8 [@media(max-height:768px)]:p-3 [@media(max-height:640px)]:p-2";
+  "flex min-h-0 flex-1 flex-col bg-slate-50 p-8 [@media(max-height:768px)]:p-3 [@media(max-height:640px)]:p-2";
 
 export default function AuthLayout({
   children,
@@ -29,7 +29,7 @@ export default function AuthLayout({
       {/* Left side - Branding */}
       <aside className={brand}>
         <div
-          className={`${blob} -top-[120px] -left-[120px] h-[420px] w-[420px] bg-[#22d3ee]`}
+          className={`${blob} -top-[120px] -left-[120px] h-[420px] w-[420px] bg-cyan-400`}
         />
         <div
           className={`${blob} -right-[100px] -bottom-[120px] h-[380px] w-[380px] bg-[#ff6b6b] [@media(max-height:640px)]:hidden`}
@@ -49,7 +49,7 @@ export default function AuthLayout({
 
           <h1 className={brandTitle}>
             {authBranding.tagline}{" "}
-            <span className="text-[#22d3ee]">{authBranding.taglineAccent}</span>
+            <span className="text-cyan-400">{authBranding.taglineAccent}</span>
           </h1>
 
           <p className={brandSubtitle}>{authBranding.subtitle}</p>
@@ -69,7 +69,7 @@ export default function AuthLayout({
       <section className={panel}>
         <Link
           href={authBranding.backHref}
-          className="self-start text-sm text-[#6c757d] no-underline transition-colors hover:text-[#0d2c4f]"
+          className="self-start text-sm text-gray-500 transition-colors hover:text-[#0d2c4f]"
         >
           ← {authBranding.backLabel}
         </Link>

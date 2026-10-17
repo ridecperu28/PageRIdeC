@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="col-span-full flex flex-col gap-4 md:col-span-1">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 font-[family-name:var(--font-heading)] text-xl font-bold text-white no-underline"
+              className="inline-flex items-center gap-2 font-[family-name:var(--font-heading)] text-xl font-bold"
             >
               <Image src="/images/logo.png" alt="RIdeC" width={40} height={40} />
               <span>RIdeC</span>
@@ -57,12 +57,12 @@ export default function Footer() {
             <h4 className="mb-2 font-[family-name:var(--font-heading)] text-sm font-bold tracking-[0.05em] text-white uppercase">
               Navegación
             </h4>
-            <ul className="m-0 flex list-none flex-col gap-[0.6rem] p-0">
+            <ul className="flex flex-col gap-[0.6rem]">
               {navLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-slate-400 no-underline transition-colors duration-200 hover:text-cyan-400"
+                    className="text-sm text-slate-400 transition-colors duration-200 hover:text-cyan-400"
                   >
                     {l.label}
                   </Link>
@@ -76,7 +76,7 @@ export default function Footer() {
             <h4 className="mb-2 font-[family-name:var(--font-heading)] text-sm font-bold tracking-[0.05em] text-white uppercase">
               Contacto
             </h4>
-            <ul className="m-0 flex list-none flex-col gap-4 p-0">
+            <ul className="flex flex-col gap-4">
               <li className="flex items-center gap-2 text-sm text-slate-400">
                 <span className="text-base">📧</span> ridecperu@gmail.com
               </li>
@@ -98,13 +98,13 @@ export default function Footer() {
           <div className="flex gap-4">
             <Link
               href="#"
-              className="text-xs text-slate-500 no-underline transition-colors duration-200 hover:text-cyan-400"
+              className="text-xs text-slate-500 transition-colors duration-200 hover:text-cyan-400"
             >
               Política de privacidad
             </Link>
             <Link
               href="#"
-              className="text-xs text-slate-500 no-underline transition-colors duration-200 hover:text-cyan-400"
+              className="text-xs text-slate-500 transition-colors duration-200 hover:text-cyan-400"
             >
               Términos de uso
             </Link>

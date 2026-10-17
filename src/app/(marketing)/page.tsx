@@ -107,7 +107,7 @@ function Slider({
 
       {slideIdx > 0 && (
         <button
-          className="absolute left-0 top-1/2 z-[2] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-0 bg-white text-[1.2rem] text-[#0d2c4f] shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-colors duration-200 hover:bg-slate-200"
+          className="absolute left-0 top-1/2 z-[2] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-[1.2rem] text-[#0d2c4f] shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-colors duration-200 hover:bg-slate-200"
           onClick={() => setSlideIdx((i) => clamp(i - 1))}
           aria-label="Anterior"
         >
@@ -116,7 +116,7 @@ function Slider({
       )}
       {slideIdx < maxIdx && (
         <button
-          className="absolute right-0 top-1/2 z-[2] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-0 bg-white text-[1.2rem] text-[#0d2c4f] shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-colors duration-200 hover:bg-slate-200"
+          className="absolute right-0 top-1/2 z-[2] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-[1.2rem] text-[#0d2c4f] shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-colors duration-200 hover:bg-slate-200"
           onClick={() => setSlideIdx((i) => clamp(i + 1))}
           aria-label="Siguiente"
         >
@@ -127,8 +127,8 @@ function Slider({
   );
 }
 
-const groupClass = "flex flex-col gap-[0.35rem]";
-const labelClass = "text-sm font-medium text-[#e2e8f0]";
+const groupClass = "flex flex-col gap-1.5";
+const labelClass = "text-sm font-medium text-slate-200";
 const fieldBase =
   "w-full rounded-xl border border-white/15 bg-white/[0.08] text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.15)]";
 const inputClass = `${fieldBase} px-[0.9rem] py-[0.6rem] text-base`;
@@ -137,7 +137,7 @@ const errorClass = "mt-1 text-xs text-[#ff6b6b]";
 const successClass =
   "rounded-xl border border-cyan-400/30 bg-cyan-400/15 px-6 py-4 text-sm font-medium text-cyan-400";
 const submitClass =
-  "mt-2 inline-flex items-center justify-center gap-2 self-start rounded-2xl bg-cyan-400 px-6 py-3 font-[family-name:var(--font-body)] text-base leading-none font-semibold text-[#060b18] no-underline transition hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60";
+  "mt-2 inline-flex items-center justify-center gap-2 self-start rounded-2xl bg-cyan-400 px-6 py-3 text-base leading-none font-semibold text-[#060b18] transition hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60";
 
 type ContactForm = {
   nombre: string;
@@ -329,13 +329,13 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/nosotros"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border-0 bg-cyan-400 px-6 py-3 font-[family-name:var(--font-body)] text-base font-semibold leading-none text-[#060b18] no-underline transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 text-base font-semibold leading-none text-[#060b18] transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0"
             >
               Conoce RIdeC
             </Link>
             <Link
               href="/eventos"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-transparent px-6 py-3 font-[family-name:var(--font-body)] text-base font-semibold leading-none text-white no-underline transition duration-200 hover:-translate-y-px hover:bg-white/10 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 px-6 py-3 text-base font-semibold leading-none text-white transition duration-200 hover:-translate-y-px hover:bg-white/10 active:translate-y-0"
             >
               Ver eventos
             </Link>
@@ -343,7 +343,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <div className="relative z-10 bg-[#f7f9fc]">
+      <div className="relative z-10 bg-slate-50">
         {/* QUÉ HACEMOS */}
         <section className="mx-auto max-w-[1200px] px-8 py-16">
           <motion.div
@@ -372,7 +372,7 @@ export default function Home() {
                 <div className="flex h-full flex-col items-center rounded-2xl bg-white px-6 py-12 text-center shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)]">
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-cyan-400/15 text-[1.75rem]">{f.icon}</div>
                   <h3 className="mb-2 font-[family-name:var(--font-heading)] text-lg font-bold text-[#0d2c4f]">{f.title}</h3>
-                  <p className="text-sm leading-[1.6] text-[#6c757d]">{f.description}</p>
+                  <p className="text-sm leading-[1.6] text-gray-500">{f.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -393,7 +393,7 @@ export default function Home() {
             </h2>
             <Link
               href="/eventos"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border-0 bg-transparent px-4 py-2 font-[family-name:var(--font-body)] text-sm font-semibold leading-none text-[#005a9c] no-underline transition duration-200 hover:-translate-y-px hover:bg-[#f7f9fc] hover:text-[#0d2c4f] active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold leading-none text-[#005a9c] transition duration-200 hover:-translate-y-px hover:bg-slate-50 hover:text-[#0d2c4f] active:translate-y-0"
             >
               Ver todos →
             </Link>
@@ -410,14 +410,14 @@ export default function Home() {
                 >
                   <div className="w-full overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)]">
                     <div className="p-6">
-                      <span className={`mb-2 inline-block rounded-full px-[0.6rem] py-[0.2rem] text-xs font-semibold uppercase tracking-[0.05em] ${ev.category === "ec" ? "bg-[#dbeafe] text-[#1d4ed8]" : "bg-[#fce7f3] text-[#be185d]"}`}>
+                      <span className={`mb-2 inline-block rounded-full px-[0.6rem] py-[0.2rem] text-xs font-semibold uppercase tracking-[0.05em] ${ev.category === "ec" ? "bg-blue-100 text-blue-700" : "bg-pink-100 text-pink-700"}`}>
                         {ev.tagLabel}
                       </span>
-                      <div className="mb-1 text-xs text-[#94a3b8]">{ev.date}</div>
+                      <div className="mb-1 text-xs text-slate-400">{ev.date}</div>
                       <div className="mb-2 font-[family-name:var(--font-heading)] text-base font-bold text-[#0d2c4f]">{ev.title}</div>
-                      <p className="text-sm leading-[1.5] text-[#6c757d]">{ev.description}</p>
+                      <p className="text-sm leading-[1.5] text-gray-500">{ev.description}</p>
                       {ev.location && (
-                        <p className="mt-1 text-xs leading-[1.5] text-[#6c757d]">
+                        <p className="mt-1 text-xs leading-[1.5] text-gray-500">
                           📍 {ev.location}
                         </p>
                       )}
@@ -465,7 +465,7 @@ export default function Home() {
                   <h4 className="mb-1 font-[family-name:var(--font-heading)] text-sm font-bold text-[#0d2c4f]">
                     ODS {o.number} · {o.title}
                   </h4>
-                  <p className="text-xs leading-[1.5] text-[#6c757d]">{o.description}</p>
+                  <p className="text-xs leading-[1.5] text-gray-500">{o.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -489,13 +489,13 @@ export default function Home() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/oportunidades"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border-0 bg-cyan-400 px-6 py-3 font-[family-name:var(--font-body)] text-base font-semibold leading-none text-[#060b18] no-underline transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 text-base font-semibold leading-none text-[#060b18] transition duration-200 hover:-translate-y-px hover:bg-cyan-500 hover:shadow-[0_4px_16px_rgba(34,211,238,0.3)] active:translate-y-0"
                 >
                   Ver oportunidades
                 </Link>
                 <Link
                   href="/nosotros"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-transparent px-6 py-3 font-[family-name:var(--font-body)] text-base font-semibold leading-none text-white no-underline transition duration-200 hover:-translate-y-px hover:bg-white/10 active:translate-y-0"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 px-6 py-3 text-base font-semibold leading-none text-white transition duration-200 hover:-translate-y-px hover:bg-white/10 active:translate-y-0"
                 >
                   Conoce más
                 </Link>

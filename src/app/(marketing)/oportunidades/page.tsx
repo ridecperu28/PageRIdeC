@@ -28,24 +28,24 @@ const typeIcons: Record<string, string> = {
 };
 
 const cardBorder: Record<string, string> = {
-  becas: "border-l-[#16a34a]",
-  congresos: "border-l-[#2563eb]",
-  traslados: "border-l-[#9333ea]",
-  financiamientos: "border-l-[#ea580c]",
+  becas: "border-l-green-600",
+  congresos: "border-l-blue-600",
+  traslados: "border-l-purple-600",
+  financiamientos: "border-l-orange-600",
 };
 
 const tagStyle: Record<string, string> = {
-  becas: "bg-[#dcfce7] text-[#16a34a]",
-  congresos: "bg-[#dbeafe] text-[#2563eb]",
-  traslados: "bg-[#f3e8ff] text-[#9333ea]",
-  financiamientos: "bg-[#fff7ed] text-[#ea580c]",
+  becas: "bg-green-100 text-green-600",
+  congresos: "bg-blue-100 text-blue-600",
+  traslados: "bg-purple-100 text-purple-600",
+  financiamientos: "bg-orange-50 text-orange-600",
 };
 
 const pillClass = (active: boolean) =>
-  `inline-flex cursor-pointer items-center rounded-full border px-4 py-[0.45rem] font-[family-name:var(--font-body)] text-sm font-medium whitespace-nowrap transition ${
+  `inline-flex cursor-pointer items-center rounded-full border px-4 py-[0.45rem] text-sm font-medium whitespace-nowrap transition ${
     active
       ? "border-[#0d2c4f] bg-[#0d2c4f] text-white hover:border-[#005a9c] hover:bg-[#005a9c]"
-      : "border-[#e0e0e0] bg-[#f7f9fc] text-[#6c757d] hover:border-[#0d2c4f] hover:text-[#0d2c4f]"
+      : "border-gray-200 bg-slate-50 text-gray-500 hover:border-[#0d2c4f] hover:text-[#0d2c4f]"
   }`;
 
 function getDeadlineUrgency(
@@ -65,9 +65,9 @@ function getDeadlineUrgency(
 }
 
 const deadlineVariantClass: Record<"urgent" | "soon" | "none", string> = {
-  urgent: "bg-[#fef2f2] text-[#dc2626] font-semibold",
-  soon: "bg-[#fff7ed] text-[#ea580c]",
-  none: "bg-[#f7f9fc] text-[#94a3b8]",
+  urgent: "bg-red-50 text-red-600 font-semibold",
+  soon: "bg-orange-50 text-orange-600",
+  none: "bg-slate-50 text-slate-400",
 };
 
 export default function OportunidadesPage() {
@@ -116,7 +116,7 @@ export default function OportunidadesPage() {
           </button>
         ))}
 
-        <div className="hidden h-6 w-px shrink-0 bg-[#e0e0e0] md:block" />
+        <div className="hidden h-6 w-px shrink-0 bg-gray-200 md:block" />
 
         <span className="mr-2 font-[family-name:var(--font-heading)] text-sm font-semibold text-[#0d2c4f]">
           Tipo:
@@ -150,13 +150,13 @@ export default function OportunidadesPage() {
                   <h3 className="mb-2 font-[family-name:var(--font-heading)] text-base font-bold text-[#0d2c4f]">
                     {o.title}
                   </h3>
-                  <p className="text-sm leading-[1.5] text-[#6c757d]">
+                  <p className="text-sm leading-[1.5] text-gray-500">
                     {o.description}
                   </p>
 
                   {o.deadline && (
                     <div
-                      className={`mt-2 inline-flex items-center gap-[0.35rem] rounded-full px-[0.6rem] py-1 text-xs font-medium ${deadlineVariantClass[urgency?.variant ?? "none"]}`}
+                      className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-[0.6rem] py-1 text-xs font-medium ${deadlineVariantClass[urgency?.variant ?? "none"]}`}
                     >
                       ⏰{" "}
                       {new Date(o.deadline).toLocaleDateString("es-PE", {
@@ -173,7 +173,7 @@ export default function OportunidadesPage() {
                       href={o.externalLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-[0.35rem] rounded-xl bg-[#0d2c4f] px-4 py-2 text-sm font-semibold text-white no-underline transition duration-200 hover:-translate-y-px hover:bg-[#005a9c]"
+                      className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-[#0d2c4f] px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:-translate-y-px hover:bg-[#005a9c]"
                     >
                       Más información →
                     </a>
@@ -184,7 +184,7 @@ export default function OportunidadesPage() {
           })}
         </div>
         {filtered.length === 0 && (
-          <div className="px-4 py-12 text-center text-[#94a3b8]">
+          <div className="px-4 py-12 text-center text-slate-400">
             <p className="mb-2 text-[2rem]">🔍</p>
             <p>No hay oportunidades que coincidan con los filtros seleccionados.</p>
           </div>

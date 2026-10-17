@@ -14,10 +14,10 @@ interface Evento {
 }
 
 const pillClass = (active: boolean) =>
-  `inline-flex cursor-pointer items-center rounded-full border px-4 py-[0.45rem] font-[family-name:var(--font-body)] text-sm font-medium whitespace-nowrap transition ${
+  `inline-flex cursor-pointer items-center rounded-full border px-4 py-[0.45rem] text-sm font-medium whitespace-nowrap transition ${
     active
       ? "border-[#0d2c4f] bg-[#0d2c4f] text-white hover:border-[#005a9c] hover:bg-[#005a9c]"
-      : "border-[#e0e0e0] bg-[#f7f9fc] text-[#6c757d] hover:border-[#0d2c4f] hover:text-[#0d2c4f]"
+      : "border-gray-200 bg-slate-50 text-gray-500 hover:border-[#0d2c4f] hover:text-[#0d2c4f]"
   }`;
 
 export default function EventosPage() {
@@ -69,7 +69,7 @@ export default function EventosPage() {
           </button>
         ))}
 
-        <div className="hidden h-6 w-px shrink-0 bg-[#e0e0e0] md:block" />
+        <div className="hidden h-6 w-px shrink-0 bg-gray-200 md:block" />
 
         <span className="mr-2 font-[family-name:var(--font-heading)] text-sm font-semibold text-[#0d2c4f]">
           Categoría:
@@ -97,11 +97,11 @@ export default function EventosPage() {
             >
               <div className="p-6">
                 <span
-                  className={`mb-2 inline-block rounded-full px-[0.6rem] py-[0.2rem] text-xs font-semibold uppercase tracking-[0.05em] ${ev.category === "ec" ? "bg-[#dbeafe] text-[#1d4ed8]" : "bg-[#fce7f3] text-[#be185d]"}`}
+                  className={`mb-2 inline-block rounded-full px-[0.6rem] py-[0.2rem] text-xs font-semibold uppercase tracking-[0.05em] ${ev.category === "ec" ? "bg-blue-100 text-blue-700" : "bg-pink-100 text-pink-700"}`}
                 >
                   {ev.tagLabel}
                 </span>
-                <div className="mb-1 text-xs text-[#94a3b8]">
+                <div className="mb-1 text-xs text-slate-400">
                   {new Date(ev.date).toLocaleDateString("es-PE", {
                     day: "numeric",
                     month: "short",
@@ -109,9 +109,9 @@ export default function EventosPage() {
                   })}
                 </div>
                 <div className="mb-2 font-[family-name:var(--font-heading)] text-base font-bold text-[#0d2c4f]">{ev.title}</div>
-                <p className="text-sm leading-[1.5] text-[#6c757d]">{ev.description}</p>
+                <p className="text-sm leading-[1.5] text-gray-500">{ev.description}</p>
                 {ev.location && (
-                  <p className="mt-1 text-xs leading-[1.5] text-[#6c757d]">
+                  <p className="mt-1 text-xs leading-[1.5] text-gray-500">
                     📍 {ev.location}
                   </p>
                 )}
@@ -120,7 +120,7 @@ export default function EventosPage() {
           ))}
         </div>
         {filtered.length === 0 && (
-          <div className="px-4 py-12 text-center text-[#94a3b8]">
+          <div className="px-4 py-12 text-center text-slate-400">
             <p className="mb-2 text-[2rem]">🔍</p>
             <p>No hay eventos que coincidan con los filtros seleccionados.</p>
           </div>

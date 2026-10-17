@@ -15,7 +15,7 @@ const links = [
 ];
 
 const navLink =
-  "relative px-2 py-[0.4rem] text-sm font-medium text-white no-underline transition-colors after:absolute after:right-2 after:bottom-0 after:left-2 after:h-0.5 after:origin-center after:scale-x-0 after:rounded-sm after:bg-cyan-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.25,1,0.5,1)] hover:text-cyan-400 hover:after:scale-x-100 max-md:border-b max-md:border-white/10 max-md:px-0 max-md:py-3 max-md:text-base max-md:after:hidden";
+  "relative px-2 py-[0.4rem] text-sm font-medium transition-colors after:absolute after:right-2 after:bottom-0 after:left-2 after:h-0.5 after:origin-center after:scale-x-0 after:rounded-sm after:bg-cyan-400 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.25,1,0.5,1)] hover:text-cyan-400 hover:after:scale-x-100 max-md:border-b max-md:border-white/10 max-md:px-0 max-md:py-3 max-md:text-base max-md:after:hidden";
 const navLinkActive = "text-cyan-400 after:scale-x-100 max-md:text-cyan-400";
 
 export default function Header() {
@@ -55,7 +55,7 @@ export default function Header() {
       <nav className={navClass}>
         <Link
           href="/"
-          className="flex items-center gap-2 font-[family-name:var(--font-heading)] text-lg font-bold text-white no-underline"
+          className="flex items-center gap-2 font-[family-name:var(--font-heading)] text-lg font-bold"
           onClick={closeMenu}
         >
           <Image
@@ -70,7 +70,7 @@ export default function Header() {
 
         <ul
           className={[
-            "m-0 flex list-none gap-4 p-0",
+            "flex gap-4",
             "max-md:fixed max-md:top-0 max-md:right-0 max-md:z-[60] max-md:h-screen max-md:w-[min(280px,80vw)] max-md:flex-col max-md:gap-0 max-md:bg-[rgba(13,44,79,0.95)] max-md:px-8 max-md:pt-20 max-md:pb-8 max-md:shadow-[-4px_0_24px_rgba(0,0,0,0.3)] max-md:backdrop-blur-lg max-md:transition-transform max-md:duration-300 max-md:ease-[cubic-bezier(0.25,1,0.5,1)]",
             menuOpen ? "max-md:translate-x-0" : "max-md:translate-x-full",
           ].join(" ")}
@@ -93,7 +93,7 @@ export default function Header() {
         </div>
 
         <button
-          className="ml-auto hidden h-9 w-9 cursor-pointer flex-col justify-center gap-[5px] border-none bg-transparent p-1.5 max-md:flex"
+          className="ml-auto hidden h-9 w-9 cursor-pointer flex-col justify-center gap-[5px] p-1.5 max-md:flex"
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Menú"
           aria-expanded={menuOpen}

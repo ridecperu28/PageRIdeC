@@ -17,7 +17,7 @@ export default async function BlogPage() {
             className="block w-full overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)]"
           >
             <div className="p-6">
-              <div className="mb-1 text-xs text-[#94a3b8]">
+              <div className="mb-1 text-xs text-slate-400">
                 {new Date(post.createdAt).toLocaleDateString("es-PE", {
                   day: "numeric",
                   month: "long",
@@ -25,7 +25,7 @@ export default async function BlogPage() {
                 })}
               </div>
               <h3 className="mb-2 font-[family-name:var(--font-heading)] text-base font-bold text-[#0d2c4f]">{post.title}</h3>
-              <p className="mb-2 text-sm leading-[1.5] text-[#6c757d]">
+              <p className="mb-2 text-sm leading-[1.5] text-gray-500">
                 Por {post.author}
               </p>
               {post.tags && (
@@ -33,7 +33,7 @@ export default async function BlogPage() {
                   {post.tags.split(",").map((tag) => (
                     <span
                       key={tag}
-                      className="mb-2 inline-block rounded-full bg-[#dbeafe] px-[0.6rem] py-[0.2rem] text-xs font-semibold tracking-[0.05em] text-[#1d4ed8] uppercase"
+                      className="mb-2 inline-block rounded-full bg-blue-100 px-[0.6rem] py-[0.2rem] text-xs font-semibold tracking-[0.05em] text-blue-700 uppercase"
                     >
                       {tag.trim()}
                     </span>

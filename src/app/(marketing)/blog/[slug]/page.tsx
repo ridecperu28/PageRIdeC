@@ -20,7 +20,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     <div className="mx-auto min-h-screen max-w-[1200px] space-y-8 px-4 py-16 md:px-8  ">
       <Link
         href="/blog"
-        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-transparent px-4 py-2 font-[family-name:var(--font-body)] text-sm leading-none font-semibold text-[#005a9c] no-underline transition hover:bg-[#f7f9fc] hover:text-[#0d2c4f]"
+        className="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm leading-none font-semibold text-[#005a9c] transition hover:bg-slate-50 hover:text-[#0d2c4f]"
       >
         ← Volver al blog
       </Link>
@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.tags.split(",").map((tag) => (
               <span
                 key={tag}
-                className="mb-2 inline-block rounded-full bg-[#dbeafe] px-[0.6rem] py-[0.2rem] text-xs font-semibold tracking-[0.05em] text-[#1d4ed8] uppercase"
+                className="mb-2 inline-block rounded-full bg-blue-100 px-[0.6rem] py-[0.2rem] text-xs font-semibold tracking-[0.05em] text-blue-700 uppercase"
               >
                 {tag.trim()}
               </span>

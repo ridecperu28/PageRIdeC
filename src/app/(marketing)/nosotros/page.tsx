@@ -70,7 +70,7 @@ export default async function Nosotros() {
               <Image className="h-[180px] w-full object-cover" src={o.image} alt={`ODS ${o.number}`} width={400} height={200} />
               <div className="p-6">
                 <h2 className="mb-2 font-[family-name:var(--font-heading)] text-base font-bold text-[#0d2c4f]">ODS {o.number} · {o.title}</h2>
-                <p className="text-sm leading-[1.5] text-[#6c757d]">{o.description}</p>
+                <p className="text-sm leading-[1.5] text-gray-500">{o.description}</p>
               </div>
             </div>
           ))}
@@ -112,7 +112,7 @@ export default async function Nosotros() {
               <Image className="h-[180px] w-full object-cover" src={m.image} alt={m.name} width={400} height={200} />
               <div className="p-6">
                 <h2 className="mb-2 font-[family-name:var(--font-heading)] text-base font-bold text-[#0d2c4f]">{m.name}</h2>
-                <p className="text-sm leading-[1.5] text-[#6c757d]">{m.role}</p>
+                <p className="text-sm leading-[1.5] text-gray-500">{m.role}</p>
               </div>
             </div>
           ))}
