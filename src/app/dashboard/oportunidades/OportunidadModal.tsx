@@ -24,9 +24,10 @@ export interface OportunidadItem {
   externalLink: string | null;
   image: string | null;
   year: number;
+  creatorId: number;
 }
 
-export type OportunidadInput = Omit<OportunidadItem, "id">;
+export type OportunidadInput = Omit<OportunidadItem, "id" | "creatorId">;
 
 export default function OportunidadModal({
   oportunidad,

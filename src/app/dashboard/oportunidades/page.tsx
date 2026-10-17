@@ -31,8 +31,9 @@ export default function OportunidadesPage() {
 
   const { user, loading, logout } = useAuth();
 
+  // PETICION DE DATOS 
   const fetchData = async () => {
-    const res = await fetch("/api/oportunidades");
+    const res = await fetch("/api/oportunidades?dashboard=true");
     setItems(await res.json());
   };
 
@@ -103,7 +104,7 @@ export default function OportunidadesPage() {
               <th className={thClass}>Tipo</th>
               <th className={thClass}>Año</th>
               <th className={thClass}>Fecha límite</th>
-              { user?.role==="ADMIN" ? <th className={thClass}>Acciones</th> : ""}
+              <th className={thClass}>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -126,7 +127,7 @@ export default function OportunidadesPage() {
 
                 {/* ACCIONES : EDITAR Y ELIMINAR */}
                 
-                {user?.role === "ADMIN" ? <td className={tdClass}>
+                {(user?.role === "ADMIN" || user?.id === o.creatorId) ? <td className={tdClass}>
                   <div className="flex gap-1.5">
                     <button
                       className={`${btnGhostPlain} text-cyan-400`}
@@ -134,12 +135,12 @@ export default function OportunidadesPage() {
                     >
                       Editar
                     </button>
-                    <button
+                    {/* <button
                       className={`${btnGhostPlain} text-red-400`}
                       onClick={() => handleDelete(o.id)}
                     >
                       Eliminar
-                    </button>
+                    </button> */}
                   </div>
                 </td> : ""}
               </tr>

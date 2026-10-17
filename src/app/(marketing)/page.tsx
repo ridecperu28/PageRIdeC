@@ -389,7 +389,7 @@ export default function Home() {
             className="mb-6 flex items-center justify-between"
           >
             <h2 className="mb-0 font-[family-name:var(--font-heading)] text-[1.25rem] font-bold text-[#0d2c4f] md:text-[1.75rem]">
-              Próximos eventos
+              Eventos Destacados
             </h2>
             <Link
               href="/eventos"

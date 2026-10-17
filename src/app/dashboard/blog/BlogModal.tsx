@@ -24,9 +24,10 @@ export interface BlogItem {
   image: string | null;
   tags: string;
   published: boolean;
+  creatorId: Number;
 }
 
-export type BlogInput = Omit<BlogItem, "id">;
+export type BlogInput = Omit<BlogItem, "id" | "creatorId">;
 
 function slugify(value: string) {
   return value

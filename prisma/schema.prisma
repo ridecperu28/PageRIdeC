@@ -30,8 +30,11 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Eventos creados por este usuario
+  // Creaciones por este usuario
   eventos   Evento[]
+  oportunidades Oportunidad[]
+  blogs BlogPost[]
+
 }
 
 model Contacto {
@@ -72,6 +75,11 @@ model Oportunidad {
   externalLink String?
   image        String?
   year         Int
+
+  // Usuario creador
+  creatorId   Int
+  creator     User     @relation(fields: [creatorId], references: [id])
+
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -86,6 +94,11 @@ model BlogPost {
   image     String?
   tags      String   @default("") // comma-separated
   published Boolean  @default(false)
+
+  // Usuario creador
+  creatorId   Int
+  creator     User     @relation(fields: [creatorId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

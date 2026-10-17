@@ -21,8 +21,9 @@ export default function BlogPage() {
   
   const {user, loading, logout} = useAuth();
 
+  // PETICION DE DATOS 
   const fetchData = async () => {
-    const res = await fetch("/api/blog?published=false");
+    const res = await fetch("/api/blog?published=false?dashboard=true");
     setItems(await res.json());
   };
 
@@ -93,7 +94,7 @@ export default function BlogPage() {
               <th className={thClass}>Autor</th>
               <th className={thClass}>Estado</th>
               <th className={thClass}>Slug</th>
-              {user?.role==="ADMIN" ? <th className={thClass}>Acciones</th> : ""}
+              <th className={thClass}>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -120,7 +121,7 @@ export default function BlogPage() {
 
                 {/* ACCIONES : EDITAR , ELIMINAR  */}
 
-                {user?.role === "ADMIN" ? <td className={tdClass}>
+                {(user?.role === "ADMIN" || user?.id === b.creatorId) ? <td className={tdClass}>
                   <div className="flex gap-1.5">
                     <button
                       className={`${btnGhostPlain} text-cyan-400`}
@@ -128,12 +129,12 @@ export default function BlogPage() {
                     >
                       Editar
                     </button>
-                    <button
+                    {/* <button
                       className={`${btnGhostPlain} text-red-400`}
                       onClick={() => handleDelete(b.id)}
                     >
                       Eliminar
-                    </button>
+                    </button> */}
                   </div>
                 </td> : ""}
               </tr>

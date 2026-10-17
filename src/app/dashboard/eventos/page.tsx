@@ -24,6 +24,7 @@ export default function EventosPage() {
 
   const { user, loading, logout } = useAuth();
 
+  // PETICION DE DATOS 
   const fetchData = async () => {
     const res = await fetch("/api/eventos?dashboard=true");
     setItems(await res.json());
@@ -96,10 +97,7 @@ export default function EventosPage() {
               <th className={thClass}>Fecha</th>
               <th className={thClass}>Categoría</th>
               <th className={thClass}>Destacado</th>
-              {
-                user?.role==="ADMIN" ? 
-                <th className={thClass}>Acciones</th> : ""
-              }
+              <th className={thClass}>Acciones</th>
             </tr>
           </thead>
           <tbody>
